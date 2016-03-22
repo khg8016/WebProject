@@ -8,7 +8,7 @@ var express = require('express'),
     session = require('express-session'),
     passport = require('passport'),
     methodOverride = require('method-override'),
-    flash = require('flash'),
+    flash = require('connect-flash'),
     http = require('http');
 
 module.exports = function(db){
