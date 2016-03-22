@@ -1,0 +1,11 @@
+<section ng-controller="IndexController">
+    <div data-ng-show="!authentication.user">
+        <a href="/#!/signup">Sign Up</a>
+        <a href="/#!/signin">Log in</a>
+    </div>
+
+    <div data-ng-show="authentication.user">
+        <h>Hi <span data-ng-bind="authentication.user.username"></span></h>
+        <a href="/signout">Log out</a>
+    </div>
+</section>
