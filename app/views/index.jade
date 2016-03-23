@@ -14,11 +14,9 @@ html
                 window.user = 'null';
             else
                 window.user = !{user};
-            for(i in messages) {
-                if (messages[i] == 'undefined')
-                    continue;
-                window.message = messages[i];
-            }
+            var message = "!{errorMessage}";
+            if(message != "")
+                alert(message);
 
 
         script(type="text/javascript" src="/lib/angular/angular.js")
@@ -26,7 +24,6 @@ html
         script(type="text/javascript" src="/index/index.client.module.js")
         script(type="text/javascript" src="/index/config/index.client.routes.js")
         script(type="text/javascript" src="/index/controllers/index.client.controller.js")
-        script(type="text/javascript" src="/index/controllers/errormsg.client.controller.js")
+        script(type="text/javascript" src="/index/controllers/index.client.signupCtrl.js")
         script(type="text/javascript" src="/index/services/index.client.service.js")
-        script(type="text/javascript" src="/index/services/errormsg.client.service.js")
         script(type="text/javascript" src="/app.js")

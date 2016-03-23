@@ -1,13 +1,21 @@
-<section>
-    <form action='/signup' method='post'>
+<section ng-controller="SignupController">
+    <form action='/signup' method='post' onsubmit="return kk()">
         <h>ID를 입력해주세요</h>
         <br>
         <input type='text' name='username' placeholder='User name' required='' autofocus=''>
         <br>
         <h>비밀번호를 입력해주세요</h>
         <br>
-        <input type='password' name='password' placeholder='Password' required='' autofocus=''>
+        <input ng-model="pw1" type='password' name='password' placeholder='Password' required='' autofocus=''>
+        <br>
+        <h>비밀번호를 한번 더 입력해주세요</h>
+        <br>
+        <input ng-model="pw2" ng-change="check()" type='password' name='password2' placeholder='Password' required='' autofocus=''>
+        <h1 data-ng-bind="msg"></h1>
         <br>
         <input type="submit" value="완료">
     </form>
+    <script>
+
+    </script>
 </section>

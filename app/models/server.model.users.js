@@ -12,12 +12,14 @@ var userSchema = new Schema({
         required : 'Username is required',
         trim : true
     },
-    password : {
-        type : String,
-        validate : [
-            function(password){
-                return password.length>6;
-            }, 'Password should be longer than 6'
+    password: {
+        type: String,
+        // Validate the 'password' value length
+        validate: [
+            function(password) {
+                return password.length > 6;
+            },
+            'Password Should Be Longer'
         ]
     },
     salt: {
