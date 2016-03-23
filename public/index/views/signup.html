@@ -1,21 +1,22 @@
 <section ng-controller="SignupController">
-    <form action='/signup' method='post' onsubmit="return kk()">
-        <h>ID를 입력해주세요</h>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../stylesheet/signin.css">
+    <form name="signUpForm" class="form-signin" action='/signup' method='post'>
+        <h2 class="form-signin-heading">ID를 입력해주세요</h2>
         <br>
-        <input type='text' name='username' placeholder='User name' required='' autofocus=''>
-        <br>
-        <h>비밀번호를 입력해주세요</h>
-        <br>
-        <input ng-model="pw1" type='password' name='password' placeholder='Password' required='' autofocus=''>
-        <br>
-        <h>비밀번호를 한번 더 입력해주세요</h>
-        <br>
-        <input ng-model="pw2" ng-change="check()" type='password' name='password2' placeholder='Password' required='' autofocus=''>
-        <h1 data-ng-bind="msg"></h1>
-        <br>
-        <input type="submit" value="완료">
-    </form>
-    <script>
+        <input type='text' class='form-control' name='username' placeholder='User name' required autofocus=''>
 
-    </script>
+        <br>
+        <input ng-model="password" ng-change="check()" class='form-control' ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$/" type='password' name='password' placeholder='비밀번호' required autofocus=''>
+        <h ng-show="signUpForm.password.$error.pattern" role="alert">6~16자 영문 대, 소문자, 숫자를 사용하세요.</h>
+        <h ng-show="signUpForm.password.$valid && !signUpForm.password.$pristine" role="alert">적절한 비밀번호 입니다.</h>
+        <br>
+        <input ng-model="confirm_pw" ng-change="check()" class='form-control' type='password' name='confirm_pw' placeholder='비밀번호 재확인' required autofocus=''>
+        <h ng-show="password != confirm_pw && confirm_pw.length > 0" role="alert">비밀번호가 일치하지 않습니다.</h>
+        <h ng-show="password == confirm_pw && confirm_pw.length > 0" role="alert">비밀번호가 일치합니다.</h>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="signUpForm.$invalid">가입하기</button>
+        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href='/'" >메인 화면으로</button>
+    </form>
 </section>

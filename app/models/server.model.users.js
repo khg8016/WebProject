@@ -17,7 +17,7 @@ var userSchema = new Schema({
         // Validate the 'password' value length
         validate: [
             function(password) {
-                return password.length > 6;
+                return password.length > 5;
             },
             'Password Should Be Longer'
         ]
