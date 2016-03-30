@@ -1,4 +1,4 @@
-<section>
+<section data-ng-controller="memoController">
     <form data-ng-submit="create()" novalidate>
         <div>
             <label for ="title">Title</label>
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div>
-            <input type="submit">
+            <button type="submit">완료</button>
         </div>
         <div data-ng-show="error">
             <strong data-ng-bind="error"></strong>

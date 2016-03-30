@@ -8,5 +8,7 @@ angular.module('memo').config(['$routeProvider',
             templateUrl : 'memo/views/client.memo.list.html'
         }).when('/memo/create', {
            templateUrl : 'memo/views/client.memo.create.html'
+        }).when('/memo/:memoId', {
+            templateUrl : 'memo/views/client.memo.view.html'
         });
     }]);

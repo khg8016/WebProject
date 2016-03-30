@@ -29,7 +29,7 @@ var userSchema = new Schema({
 
 userSchema.methods.authenticate = function(password){
     return this.hashPassword(password) === this.password;
-}
+};
 
 userSchema.methods.hashPassword = function(password) {
     return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
