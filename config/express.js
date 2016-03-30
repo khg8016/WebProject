@@ -42,6 +42,7 @@ module.exports = function(db){
     app.set('view engine', 'jade');
 
     require('../app/routes/server.index.routes')(app);
+    require('../app/routes/server.memo.routes')(app);
 
     app.use(express.static('./public'));
 

@@ -48,12 +48,12 @@ module.exports.signUp = function(req, res, next){
             req.login(user, function(err) { //이걸 실행하면 serialze 메서드가 실행되고 serialize에서 사용자 세션(req.user) 생성.passport.authenticate()메서드 사용할 때 자동으로 호출되기도 함.
                 if (err)
                     return next(err);
-                return res.redirect('/');
+                return res.redirect('/#!/list');
             });
         });
 
     }else{
-        res.redirect('/');
+        res.redirect('/#!/list');
     }
 };
 
@@ -62,4 +62,11 @@ module.exports.signOut = function(req, res, next){
     res.redirect('/');
 };
 
-
+module.exports.requiresLogin = function(req, res, next){
+    if(!req.isAuthenticated()){
+        return res.status(401).send({
+            message: 'User is not logged in'
+        });
+    }
+    next();
+};

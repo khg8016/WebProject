@@ -1,0 +1,15 @@
+<section data-ng-controller="memoController" data-ng-init="find()">
+    <a href="/signout">Log out</a>
+    <a href="/#!/memo/create">create</a>
+    <h1>Memos</h1>
+    <ul>
+        <li data-ng-repeat="memo in memos">
+            <a data-ng-href="#!/memo/{{memo._id}}" data-ng-bind="memo.title"></a>
+            <br>
+            <small data-ng-bind="memo.contents"></small>
+            <small data-ng-bind="memo.created | date:'medium'"></small>
+            <small data-ng-bind="memo.creator.username"></small>
+            <p data-ng-bind="memo.content"></p>
+        </li>
+    </ul>
+</section>
