@@ -24,7 +24,11 @@ var userSchema = new Schema({
     },
     salt: {
         type: String
-    }
+    },
+    boards: [{
+        type: Schema.ObjectId,
+        ref : 'Board'
+    }]
 });
 
 userSchema.methods.authenticate = function(password){

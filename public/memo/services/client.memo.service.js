@@ -3,7 +3,8 @@
  */
 angular.module('memo').factory('Memos', ['$resource',
     function($resource){
-        return $resource('api/memos/:memoId', {
+        return $resource('api/main/:boardId/:memoId', {
+            boardId : '@_id',
             memoId : '@_id'
         }, {
             update: {

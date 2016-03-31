@@ -18,6 +18,7 @@ var getErrorMessage = function(err) {
 module.exports.create = function(req, res){
     var memo = new Memo(req.body); // $save를 통해 post요청을 보내면 그 값들이 req.body에 들어감
     memo.creator = req.user;
+    req.board.memos.push(memo);
     memo.save(function(err){
         if(err){
             return res.status(400).send({
