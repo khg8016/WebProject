@@ -41,8 +41,11 @@ module.exports = function(db){
     app.set('views', './app/views');
     app.set('view engine', 'jade');
 
+
+    require('../app/routes/server.board.routes')(app);
     require('../app/routes/server.index.routes')(app);
     require('../app/routes/server.memo.routes')(app);
+
 
     app.use(express.static('./public'));
 

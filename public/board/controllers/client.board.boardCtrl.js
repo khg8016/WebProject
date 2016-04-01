@@ -24,7 +24,7 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
             });
 
             board.$save(function(response){
-                $location.path('/main')
+                $location.path('/main');
             }, function(errorResponse){
                 $scope.error = errorResponse.data.message;
             });

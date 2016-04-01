@@ -7,11 +7,12 @@ var board = require('../controllers/server.board.controller'),
     memos = require('../controllers/server.memo.controller');
 
 module.exports = function(app){
-    app.route('api/main').
+
+    app.route('/api/main').
         get(board.boardList).
         post(users.requiresLogin, board.create);
 
-    app.route('api/main/:boardId').
+    app.route('/api/main/:boardId').
         get(board.memoList).
         post(memos.create).
         put(board.update).
@@ -20,6 +21,5 @@ module.exports = function(app){
     app.post('api/main/:boardId/addMember', board.addMember);
 
     app.param('boardId', board.boardById);
-
 
 };

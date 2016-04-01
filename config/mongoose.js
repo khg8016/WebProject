@@ -8,5 +8,6 @@ module.exports = function(){
     var db = mongoose.connect(config.db);
     require('../app/models/server.model.users');
     require('../app/models/server.model.memos');
+    require('../app/models/server.model.boards');
     return db;
 };
