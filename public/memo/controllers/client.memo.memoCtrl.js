@@ -5,13 +5,15 @@
 angular.module('memo').controller('memoController', ['$scope', '$routeParams', '$location', 'Authentication', 'Memos',
     function($scope, $routeParams, $location, Authentication, Memos){
         $scope.authentication = Authentication;
+        $scope.boardId = $routeParams.boardId;
 
         $scope.find = function(){
-            $scope.memos = Memos.query();
+            $scope.memos = Memos.query({boardId: $routeParams.boardId});
         };
 
         $scope.findOne = function(){
-            $scope.memo = Memos.get({memoId : $routeParams.memoId});
+            $scope.memo = Memos.get({boardId: $routeParams.boardId,
+                                      memoId : $routeParams.memoId});
         };
 
         $scope.create = function(){
@@ -20,7 +22,7 @@ angular.module('memo').controller('memoController', ['$scope', '$routeParams', '
                 contents : this.contents
             });
             memo.$save(function(response){
-                $location.path('/list')
+                $location.path('/main/' + $routeParams.boardId);
             }, function(errorResponse){
                $scope.error = errorResponse.data.message;
             });
@@ -37,16 +39,17 @@ angular.module('memo').controller('memoController', ['$scope', '$routeParams', '
                 });
             } else {
                 $scope.memo.$remove(function (){
-                    $location.path('/list');
+                    $location.path('/main/' + $routeParams.boardId);
                 });
             }
         };
 
         $scope.update = function(){
             $scope.memo.$update(function(response){
-                $location.path('/list')
+                $location.path('/main/' + $routeParams.boardId);
             }, function(errorResponse){
                 $scope.error = errorResponse.data.message;
             });
         };
-}]);
+    }
+]);

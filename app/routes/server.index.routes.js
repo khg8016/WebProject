@@ -13,5 +13,6 @@ module.exports = function(app){
         failureFlash: true
     }));
     app.get('/signout', users.signOut);
+
 };
 

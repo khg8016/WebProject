@@ -4,7 +4,7 @@
 
 angular.module('board').factory('Board', ['$resource',
     function($resource){
-        return $resource('api/board/:boardId', {
+        return $resource('api/main/:boardId', {
             boardId : '@_id'
         }, {
             update : {

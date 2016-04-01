@@ -3,8 +3,7 @@
  */
 
 var mongoose = require('mongoose'),
-    Board = mongoose.model('Board'),
-    Users = mongoose.model('User');
+    Board = mongoose.model('Board');
 
 var getErrorMessage = function(err) {
     if (err.errors) {
@@ -16,11 +15,11 @@ var getErrorMessage = function(err) {
     }
 };
 
-
 module.exports.create = function(req, res){
     var board = new Board(req.body);
-    board.creator = req.user;
-    req.user.boards.push(board);
+    var user = req.user;
+    board.creator = user;
+    user.boards.push(board);
     board.save(function(err){
         if(err){
             return res.status(400).send({
@@ -34,8 +33,15 @@ module.exports.create = function(req, res){
 
 module.exports.delete = function(req, res){
     var board = req.board;
-
-    board.remove();
+    board.remove(function(err){
+        if(err){
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else{
+            res.json(board);
+        }
+    });
 };
 
 module.exports.update = function(req, res){
