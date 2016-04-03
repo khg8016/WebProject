@@ -12,8 +12,6 @@ angular.module('board').config(['$routeProvider',
             templateUrl : 'board/views/client.board.addMembers.html'
         }).when('/main/:boardId/edit', {
             templateUrl : 'board/views/client.board.edit.html'
-        }).when('/main/:boardId/', {
-            templateUrl : 'board/views/client.board.view.html'
-        })
+        });
     }
 ]);

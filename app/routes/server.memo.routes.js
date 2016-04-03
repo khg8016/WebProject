@@ -6,14 +6,17 @@ var users = require('../controllers/server.user.controller'),
     board = require('../controllers/server.board.controller');
 
 module.exports = function(app){
+    app.route('/api/main/:boardId/memo').
+        get(memos.memoList).
+        post(users.requiresLogin, memos.create);
 
-    app.route('/api/main/:boardId/:memoId').
+    app.route('/api/main/:boardId/memo/:memoId').
         get(memos.read).
         put(users.requiresLogin, memos.hasAuthorization, memos.update).
         delete(users.requiresLogin, memos.hasAuthorization, memos.delete);
 
-    app.param('memoId', memos.memoById);
     app.param('boardId', board.boardById);
+    app.param('memoId', memos.memoById);
 
 };
 

@@ -1,5 +1,5 @@
-<section data-ng-controller="boardController">
-    <form action="api/main/{{boardId}}/addMember" method="post">
+<section data-ng-controller="boardController" data-ng-init="findOne()">
+    <form >
         <div>
             <label for ="username">ID</label>
             <input type="text" id="username" placeholder="추가할 계정" required>

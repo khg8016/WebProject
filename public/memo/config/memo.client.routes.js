@@ -4,10 +4,12 @@
 
 angular.module('memo').config(['$routeProvider',
     function($routeProvider){
-        $routeProvider.when('/main/:boardId/create', {
+        $routeProvider.when('/main/:boardId/memo/create', {
            templateUrl : 'memo/views/client.memo.create.html'
-        }).when('/main/:boardId/:memoId', {
+        }).when('/main/:boardId/memo/:memoId', {
             templateUrl : 'memo/views/client.memo.view.html'
+        }).when('/main/:boardId/memo', {
+            templateUrl : 'memo/views/client.memo.list.html'
         });
     }
 ]);

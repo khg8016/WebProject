@@ -13,12 +13,11 @@ module.exports = function(app){
         post(users.requiresLogin, board.create);
 
     app.route('/api/main/:boardId').
-        get(board.memoList).
-        post(memos.create).
+        get(board.read).
+        post(board.addMember).
         put(board.update).
         delete(board.delete);
 
-    app.post('api/main/:boardId/addMember', board.addMember);
 
     app.param('boardId', board.boardById);
 

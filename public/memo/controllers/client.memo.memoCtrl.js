@@ -21,8 +21,8 @@ angular.module('memo').controller('memoController', ['$scope', '$routeParams', '
                 title : this.title,
                 contents : this.contents
             });
-            memo.$save(function(response){
-                $location.path('/main/' + $routeParams.boardId);
+            memo.$save({boardId: $routeParams.boardId}, function(response){
+                $location.path('/main/' + $routeParams.boardId + '/memo');
             }, function(errorResponse){
                $scope.error = errorResponse.data.message;
             });
@@ -30,7 +30,8 @@ angular.module('memo').controller('memoController', ['$scope', '$routeParams', '
 
         $scope.delete = function(memo){
             if(memo){
-                memo.$remove(function(){
+                memo.$remove({boardId: $routeParams.boardId},
+                    function(){
                     for(var i in $scope.memos){
                         if($scope.memos[i] === memo){
                             $scope.memos.splice(i, 1);
@@ -38,15 +39,17 @@ angular.module('memo').controller('memoController', ['$scope', '$routeParams', '
                     }
                 });
             } else {
-                $scope.memo.$remove(function (){
-                    $location.path('/main/' + $routeParams.boardId);
+                $scope.memo.$remove({boardId: $routeParams.boardId},
+                    function (){
+                    $location.path('/main/' + $routeParams.boardId + '/memo');
                 });
             }
         };
 
         $scope.update = function(){
-            $scope.memo.$update(function(response){
-                $location.path('/main/' + $routeParams.boardId);
+            $scope.memo.$update({boardId: $routeParams.boardId},
+                function(response){
+                $location.path('/main/' + $routeParams.boardId + '/memo');
             }, function(errorResponse){
                 $scope.error = errorResponse.data.message;
             });

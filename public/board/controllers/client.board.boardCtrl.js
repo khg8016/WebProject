@@ -48,11 +48,11 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
                         }
                     }
                 });
-            } else {
+            }/* else {
                 $scope.board.$remove(function (){
                     $location.path('/main');
                 });
-            }
+            }*/
         };
     }
 ]);

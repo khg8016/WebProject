@@ -3,7 +3,8 @@
  */
 
 var mongoose = require('mongoose'),
-    Board = mongoose.model('Board');
+    Board = mongoose.model('Board'),
+    User = mongoose.model('User');
 
 var getErrorMessage = function(err) {
     if (err.errors) {
@@ -17,27 +18,38 @@ var getErrorMessage = function(err) {
 
 module.exports.create = function(req, res){
     var board = new Board(req.body);
-    var user = req.user;
-    board.creator = user;
-    user.boards.push(board);
-    user.save(function(err) {
-        if (err) {
-            return res.status(400).send({
-                message: getErrorMessage(err)
-            });
-        } else {
-            res.json(user);
-        }
-    });
+    board.creator = req.user;
     board.save(function(err){
         if(err){
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else{
-            res.json(board);
+            //res.json(board);
         }
-    })
+    });
+
+    User.findOne({_id : req.user._id}, function(err, user) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            user.boards.push(board);
+            //console.log("보드 배열");
+            user.save(function (err1) {
+                if (err1) {
+                    return res.status(400).send({
+                        message: getErrorMessage(err1)
+                    });
+                } else {
+                    res.json(user);
+                    //console.log(user.boards);
+                    //console.log(req.user.boards);
+                }
+            });
+        }
+    });
 };
 
 module.exports.delete = function(req, res){
@@ -54,16 +66,24 @@ module.exports.delete = function(req, res){
                     boards.splice(i, 1);
                 }
             }
-            req.user.save(function(err) {
-                if (err) {
+            User.findOne({_id : req.user._id}, function(err1, user) {
+                if (err1) {
                     return res.status(400).send({
-                        message: getErrorMessage(err)
+                        message: getErrorMessage(err1)
                     });
                 } else {
-                    res.json(req.user);
+                    user.save(function(err2) {
+                        if (err2) {
+                            return res.status(400).send({
+                                message: getErrorMessage(err2)
+                            });
+                        } else {
+                            res.json(req.user);
+                        }
+                    });
                 }
             });
-            res.json(board);
+            //res.json(board);
         }
     });
 };
@@ -71,6 +91,7 @@ module.exports.delete = function(req, res){
 module.exports.update = function(req, res){
     var board = req.board;
     board.name = req.body.name;
+
     board.save(function(err){
         if(err){
             return res.status(400).send({
@@ -96,13 +117,21 @@ module.exports.addMember = function(req, res){
 };
 
 module.exports.boardList = function(req, res){
-    var user = req.user;
-    res.json(user.boards);
+    //var user = req.user;
+    User.findOne({_id : req.user._id}).populate('boards').exec(function(err, user) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.json(user.boards);
+        }
+    });
 };
 
-module.exports.memoList = function(req, res){
-    var board = req.board;
-    res.json(board.memos);
+
+module.exports.read = function(req, res){
+    res.json(req.board);
 };
 
 module.exports.boardById = function(req, res, next, id){

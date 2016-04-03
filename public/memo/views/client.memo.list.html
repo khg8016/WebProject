@@ -1,7 +1,8 @@
 <section data-ng-controller="memoController" data-ng-init="find()">
     <a href="/signout">로그아웃</a>
-    <a href="/#!/main/{{boardId}}/create">메모 생성</a>
+    <a href="/#!/main/{{boardId}}/memo/create">메모 생성</a>
     <a href="/#!/main/{{boardId}}/addMembers">사용자 추가</a>
+    <a href="/#!/main/">보드 리스트로</a>
     <h1>Memos</h1>
     <ul>
         <li data-ng-repeat="memo in memos">
@@ -12,7 +13,7 @@
             <small data-ng-bind="memo.created | date:'medium'"></small>
             <small data-ng-bind="memo.creator.username"></small>
             <br>
-            <a href="/#!/main/{{memo._id}}">edit</a>
+            <a href="/#!/main/{{boardId}}/memo/{{memo._id}}">edit</a>
             <button type="button" data-ng-click="delete(memo);">지우기</button>
         </li>
     </ul>

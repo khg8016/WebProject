@@ -16,7 +16,8 @@ var getErrorMessage = function(err) {
 };
 
 module.exports.create = function(req, res){
-    var memo = new Memo(req.body); // $save를 통해 post요청을 보내면 그 값들이 req.body에 들어감
+    var memo = new Memo(req.body); // $
+    // 를 통해 post요청을 보내면 그 값들이 req.body에 들어감
     memo.creator = req.user;
     req.board.memos.push(memo);
 
@@ -105,6 +106,11 @@ module.exports.list = function(req, res){
             res.json(memos);
         }
     })
+};
+
+module.exports.memoList = function(req, res){
+    var board = req.board;
+    res.json(board.memos);
 };
 
 exports.hasAuthorization = function(req, res, next){ //글 작성자가 수정이나 지우려고 할 때 너가 권한 갖고있니? 이거

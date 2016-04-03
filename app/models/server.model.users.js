@@ -38,7 +38,10 @@ userSchema.methods.authenticate = function(password){
 userSchema.methods.hashPassword = function(password) {
     return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
 };
-
+userSchema.methods.newSalt = function(){
+    this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+};
+/*
 userSchema.pre('save', function(next){
     if(this.password){
         this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
@@ -46,5 +49,5 @@ userSchema.pre('save', function(next){
     }
     next();
 });
-
+*/
 mongoose.model('User', userSchema);

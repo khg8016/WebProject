@@ -7,7 +7,7 @@ angular.module('board').factory('Board', ['$resource',
         return $resource('api/main/:boardId', {
             boardId : '@_id'
         }, {
-            update : {
+            update: {
                 method : 'PUT'
             }
         });

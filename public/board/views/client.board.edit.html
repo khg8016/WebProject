@@ -1,9 +1,9 @@
-<section data-ng-controller="boardController">
+<section data-ng-controller="boardController" data-ng-init="findOne()">
     <form data-ng-submit="update()" novalidate>
         <div>
             <label for ="name">Name</label>
             <div>
-                <input type="text" data-ng-model ="name" id="name" placeholder="보드명" required>
+                <input type="text" data-ng-model ="board.name" id="name" placeholder="보드명" required>
             </div>
         </div>
         <div>

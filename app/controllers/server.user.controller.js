@@ -37,7 +37,8 @@ module.exports.index = function(req, res){
 module.exports.signUp = function(req, res, next){
     if(!req.user) {
         var user = new User(req.body);
-
+        user.newSalt();
+        user.password = user.hashPassword(user.password);
         user.save(function (err) {
             if (err) {
                 var message = getErrorMessage(err);
