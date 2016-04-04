@@ -6,9 +6,11 @@
         <li data-ng-repeat="board in boards">
             <a data-ng-href="#!/main/{{board._id}}/memo" data-ng-bind="board.name"></a> <!-- 보드 들어가기 -->
             <br>
-            <a href="/#!/main/{{board._id}}/edit">edit</a> <!-- 보드이름 수정 -->
-            <button type="button" data-ng-click="delete(board);">지우기</button> <!-- 보드 지우기-->
-            <a href="/#!/main/{{board._id}}/addMembers">사용자 추가</a>
+            <div ><!-- data-ng-hide="authentication.user != board.creator"-->
+                <a href="/#!/main/{{board._id}}/edit">edit</a> <!-- 보드이름 수정 -->
+                <button type="button" data-ng-click="delete(board);">지우기</button> <!-- 보드 지우기-->
+                <a href="/#!/main/{{board._id}}/addMembers">사용자 추가</a>
+            </div>
         </li>
     </ul>
 </section>

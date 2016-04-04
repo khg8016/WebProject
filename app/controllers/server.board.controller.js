@@ -108,16 +108,23 @@ module.exports.addMember = function(req, res){
                message: getErrorMessage(err)
            });
        } else {
-           user.boards.push(board);
-           user.save(function (err1) {
-               if (err1) {
-                   return res.status(400).send({
-                       message: getErrorMessage(err1)
-                   });
-               } else {
-                   res.json(user);
-               }
-           });
+           if(user){
+               user.boards.push(board);
+               user.save(function (err1) {
+                   if (err1) {
+                       return res.status(400).send({
+                           message: getErrorMessage(err1)
+                       });
+                   } else {
+                       res.json(user);
+                   }
+               });
+           }else {
+               return res.status(401).send({
+                   message: '해당되는 유저가 없습니다.'
+               });
+           }
+
        }
     });
 };
@@ -138,6 +145,16 @@ module.exports.boardList = function(req, res){
 
 module.exports.read = function(req, res){
     res.json(req.board);
+};
+
+
+exports.hasAuthorization = function(req, res, next){ //글 작성자가 수정이나 지우려고 할 때 너가 권한 갖고있니? 이거
+    if(req.board.creator.id !== req.user._id){ //글 작성자와 현재 유저가 같은지 확인
+        return res.status(403).send({
+            message: 'User is not authorized'
+        });
+    }
+    next();
 };
 
 module.exports.boardById = function(req, res, next, id){

@@ -4,8 +4,8 @@
 angular.module('board').controller('boardController', ['$scope', '$routeParams', '$location', 'Authentication', 'Board',
     function($scope, $routeParams, $location, Authentication, Board){
         $scope.authentication = Authentication;
-        $scope.boardId = $routeParams.boardId
-
+        console.log("aaa"+ Authentication.user.username);
+        $scope.boardId = $routeParams.boardId;
         $scope.findBoards = function(){ //보드들을 찾음
             $scope.boards = Board.query();
         };
@@ -59,8 +59,6 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
             var user = new Board({
                 username : this.username
             });
-            console.log("aa "+this.username);
-            console.log("bb "+user.username);
 
             user.$save({boardId : $routeParams.boardId}, function(response){
                 $location.path('/main');

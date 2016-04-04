@@ -3,7 +3,8 @@
  */
 
 var mongoose = require('mongoose'),
-    Memo = mongoose.model('Memo');
+    Memo = mongoose.model('Memo'),
+    Board = mongoose.model('Board');
 
 var getErrorMessage = function(err) {
     if (err.errors) {
@@ -95,22 +96,11 @@ module.exports.memoById = function(req, res, next, id){
         next();
     });
 };
-
-module.exports.list = function(req, res){
-    Memo.find({creator : req.user}).sort('-created').populate('creator', 'username').exec(function (err, memos) {
-        if(err){
-            return res.status(400).send({
-                message: getErrorMessage(err)
-            });
-        }else {
-            res.json(memos);
-        }
-    })
-};
-
 module.exports.memoList = function(req, res){
     var board = req.board;
     res.json(board.memos);
+
+
 };
 
 exports.hasAuthorization = function(req, res, next){ //글 작성자가 수정이나 지우려고 할 때 너가 권한 갖고있니? 이거

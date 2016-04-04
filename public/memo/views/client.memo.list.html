@@ -9,9 +9,6 @@
             <br>
             <p data-ng-bind="memo.contents"></p>
             <br>
-            <small data-ng-bind="memo.created | date:'medium'"></small>
-            <small data-ng-bind="memo.creator.username"></small>
-            <br>
             <a href="/#!/main/{{boardId}}/memo/{{memo._id}}/edit">edit</a>
             <button type="button" data-ng-click="delete(memo);">지우기</button>
         </li>
