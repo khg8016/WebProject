@@ -1,9 +1,9 @@
-<section data-ng-controller="boardController" data-ng-init="findOne()">
-    <form >
+<section data-ng-controller="boardController">
+    <form name="addForm" data-ng-submit="addMember()" novalidate>
         <div>
             <label for ="username">ID</label>
-            <input type="text" id="username" placeholder="추가할 계정" required>
+            <input type="text" data-ng-model="username" id="username" placeholder="추가할 계정" required>
         </div>
-        <input type="submit" value="완료">
+        <button type="submit" ng-disabled="addForm.$invalid">완료</button>
     </form>
 </section>

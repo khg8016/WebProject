@@ -54,6 +54,21 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
                 });
             }*/
         };
+
+        $scope.addMember = function(req, res){
+            var user = new Board({
+                username : this.username
+            });
+            console.log("aa "+this.username);
+            console.log("bb "+user.username);
+
+            user.$save({boardId : $routeParams.boardId}, function(response){
+                $location.path('/main');
+            }, function(errorResponse){
+                $scope.error = errorResponse.data.message;
+            });
+
+        };
     }
 ]);
 

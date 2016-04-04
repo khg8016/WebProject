@@ -36,7 +36,6 @@ module.exports.create = function(req, res){
             });
         } else {
             user.boards.push(board);
-            //console.log("보드 배열");
             user.save(function (err1) {
                 if (err1) {
                     return res.status(400).send({
@@ -44,8 +43,6 @@ module.exports.create = function(req, res){
                     });
                 } else {
                     res.json(user);
-                    //console.log(user.boards);
-                    //console.log(req.user.boards);
                 }
             });
         }
@@ -105,13 +102,22 @@ module.exports.update = function(req, res){
 
 module.exports.addMember = function(req, res){
     var board = req.board;
-    User.findOne({username : req.body.username}, function(err, user){
+    User.findOne({username : req.body.username}).populate('boards').exec(function(err, user){
        if(err){
            return res.status(400).send({
                message: getErrorMessage(err)
            });
        } else {
-           board.members.push(user);
+           user.boards.push(board);
+           user.save(function (err1) {
+               if (err1) {
+                   return res.status(400).send({
+                       message: getErrorMessage(err1)
+                   });
+               } else {
+                   res.json(user);
+               }
+           });
        }
     });
 };

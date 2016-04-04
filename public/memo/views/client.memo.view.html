@@ -1,23 +1,9 @@
 <section data-ng-controller="memoController" data-ng-init="findOne()">
-    <form data-ng-submit="update()" novalidate>
-        <div>
-            <label for ="title">Title</label>
-            <div>
-                <input type="text" data-ng-model ="memo.title" id="title" placeholder="Title" required>
-            </div>
-        </div>
-        <div>
-            <label for="contents">Content</label>
-            <div>
-                <textarea data-ng-model="memo.contents" id="contents" cols="30" rows="10" placeholder="Contents"></textarea>
-            </div>
-        </div>
-        <div>
-            <button type="submit">완료</button>
-            <button type="button" onclick="location.href='/#!/main/{{boardId}}/memo'" data-ng-click="delete();">지우기</button>
-        </div>
-        <div data-ng-show="error">
-            <strong data-ng-bind="error"></strong>
-        </div>
-    </form>
+    <h data-ng-bind="memo.title"></h>
+    <br>
+    <p data-ng-bind="memo.contents"></p>
+    <br>
+    <small data-ng-bind="memo.created | date:'medium'"></small>
+    <small data-ng-bind="memo.creator.username"></small>
+    <a href="/#!/main/{{boardId}}/memo/">메모 리스트로</a>
 </section>

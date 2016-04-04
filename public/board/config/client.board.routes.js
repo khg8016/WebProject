@@ -8,7 +8,7 @@ angular.module('board').config(['$routeProvider',
             templateUrl : 'board/views/client.board.main.html'
         }).when('/main/create', {
             templateUrl : 'board/views/client.board.create.html'
-        }).when('/main/:boardId/addMember', {
+        }).when('/main/:boardId/addMembers', {
             templateUrl : 'board/views/client.board.addMembers.html'
         }).when('/main/:boardId/edit', {
             templateUrl : 'board/views/client.board.edit.html'
