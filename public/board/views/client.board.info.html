@@ -1,0 +1,18 @@
+<section data-ng-controller="boardController" data-ng-init="findOne()">
+    <h data-ng-bind="board.name"></h>
+    <h1>보드 작성자 </h1>
+    <h data-ng-bind="board.creator.username"></h>
+    <h1> 소속 멤버 </h1>
+    <ul>
+        <li data-ng-repeat="member in board.members">
+            <p data-ng-bind="member.username"></p>
+        </li>
+    </ul>
+    <a href="/#!/main/{{board._id}}/addMembers">사용자 추가</a>
+    <span data-ng-show="authentication.user._id == board.creator._id"><!-- data-ng-hide="authentication.user != board.creator"-->
+        <a href="/#!/main/{{board._id}}/edit">edit</a> <!-- 보드이름 수정 -->
+        <button type="button" data-ng-click="delete();">지우기</button> <!-- 보드 지우기-->
+    </span>
+    <a href="/#!/main/">보드 리스트로</a>
+
+</section>

@@ -19,13 +19,14 @@ var getErrorMessage = function(err) {
 module.exports.create = function(req, res){
     var board = new Board(req.body);
     board.creator = req.user;
+    board.members.push(req.user);
     board.save(function(err){
         if(err){
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else{
-            //res.json(board);
+            res.json(board);
         }
     });
 
@@ -42,7 +43,7 @@ module.exports.create = function(req, res){
                         message: getErrorMessage(err1)
                     });
                 } else {
-                    res.json(user);
+                    //res.json(user);
                 }
             });
         }
@@ -102,6 +103,13 @@ module.exports.update = function(req, res){
 
 module.exports.addMember = function(req, res){
     var board = req.board;
+    for(var i in board.members){ //보드에 추가하고자 하는 멤버가 이미 있는지 확인
+        if(board.members[i].username == req.body.username){
+            return res.status(401).send({
+                message: '이미 추가된 유저입니다.'
+            });
+        }
+    }
     User.findOne({username : req.body.username}).populate('boards').exec(function(err, user){
        if(err){
            return res.status(400).send({
@@ -109,6 +117,7 @@ module.exports.addMember = function(req, res){
            });
        } else {
            if(user){
+               board.members.push(user);
                user.boards.push(board);
                user.save(function (err1) {
                    if (err1) {
@@ -117,6 +126,13 @@ module.exports.addMember = function(req, res){
                        });
                    } else {
                        res.json(user);
+                   }
+               });
+               board.save(function (err2) {
+                   if (err2) {
+                       return res.status(400).send({
+                           message: getErrorMessage(err2)
+                       });
                    }
                });
            }else {

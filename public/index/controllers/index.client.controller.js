@@ -4,4 +4,5 @@
 angular.module('index').controller('IndexController', ['Authentication','$scope',
     function(Authentication, $scope){
         $scope.authentication = Authentication;
-}]);
+    }
+]);

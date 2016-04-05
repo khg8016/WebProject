@@ -9,12 +9,12 @@ var board = require('../controllers/server.board.controller'),
 module.exports = function(app){
 
     app.route('/api/main').
-        get(board.boardList).
+        get(users.requiresLogin, board.boardList).
         post(users.requiresLogin, board.create);
 
     app.route('/api/main/:boardId').
-        get(board.read).
-        post(users.requiresLogin, board.hasAuthorization, board.addMember).
+        get(users.requiresLogin, board.read).
+        post(users.requiresLogin, board.addMember).
         put(users.requiresLogin, board.hasAuthorization, board.update).
         delete(users.requiresLogin, board.hasAuthorization, board.delete);
 

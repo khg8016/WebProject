@@ -7,13 +7,13 @@ var users = require('../controllers/server.user.controller'),
 
 module.exports = function(app){
     app.route('/api/main/:boardId/memo').
-        get(memos.memoList).
+        get(users.requiresLogin, memos.memoList).
         post(users.requiresLogin, memos.create);
 
     app.route('/api/main/:boardId/memo/:memoId').
-        get(memos.read).
-        put(users.requiresLogin, memos.hasAuthorization, memos.update).
-        delete(users.requiresLogin, memos.hasAuthorization, memos.delete);
+        get(users.requiresLogin, memos.read).
+        put(users.requiresLogin, memos.update).
+        delete(users.requiresLogin, memos.delete);
 
     app.param('boardId', board.boardById);
     app.param('memoId', memos.memoById);

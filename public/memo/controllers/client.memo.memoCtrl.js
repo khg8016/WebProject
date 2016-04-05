@@ -6,7 +6,6 @@ angular.module('memo').controller('memoController', ['$scope', '$routeParams', '
     function($scope, $routeParams, $location, Authentication, Memos){
         $scope.authentication = Authentication;
         $scope.boardId = $routeParams.boardId;
-
         $scope.find = function(){
             $scope.memos = Memos.query({boardId: $routeParams.boardId});
         };

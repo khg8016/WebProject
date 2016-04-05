@@ -1,16 +1,13 @@
 <section data-ng-controller="boardController" data-ng-init="findBoards()">
-    <a href="/signout">로그아웃</a>
-    <a href="/#!/main/create">보드 생성</a>
+    <div data-ng-show="authentication.user">
+        <span data-ng-bind="authentication.user.username"></span>
+        <a href="/signout">로그아웃</a>
+        <a href="/#!/main/create">보드 생성</a>
+    </div>
     <h1>Boards</h1>
     <ul>
         <li data-ng-repeat="board in boards">
             <a data-ng-href="#!/main/{{board._id}}/memo" data-ng-bind="board.name"></a> <!-- 보드 들어가기 -->
-            <br>
-            <div ><!-- data-ng-hide="authentication.user != board.creator"-->
-                <a href="/#!/main/{{board._id}}/edit">edit</a> <!-- 보드이름 수정 -->
-                <button type="button" data-ng-click="delete(board);">지우기</button> <!-- 보드 지우기-->
-                <a href="/#!/main/{{board._id}}/addMembers">사용자 추가</a>
-            </div>
-        </li>
+            <a href="/#!/main/{{board._id}}/info">정보 보기</a>
     </ul>
 </section>
