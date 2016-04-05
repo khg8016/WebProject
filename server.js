@@ -13,7 +13,6 @@ var db = mongoose();
 var app = express(db);
 var passport = passport();
 
-
 app.listen(3000);
 
 console.log("Server is running at http://localhost:3000/");

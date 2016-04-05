@@ -1,14 +1,24 @@
 <section>
-    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../stylesheet/signin.css">
-    <form class="form-signin" action='/signin' method='post'>
-        <h2 class="form-signin-heading">로그인 해주세요</h2>
-        <label class="sr-only"> ID</label>
-        <input type='text' class='form-control' name='username' placeholder='User name' required='' autofocus=''>
-        <label class="sr-only"> Password</label>
-        <input type='password' class='form-control' name='password' placeholder='Password' required='' autofocus=''>
-        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Login">
-        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href='/'" >메인 화면으로</button>
-    </form>
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">WEBMEMO</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-signin" action='/signin' method='post'>
+                        <h2 class="form-signin-heading">LOGIN</h2>
+                        <label class="sr-only"> ID</label>
+                        <input type='text' class='form-control' name='username' placeholder='User name' required='' autofocus=''>
+                        <label class="sr-only"> Password</label>
+                        <input type='password' class='form-control' name='password' placeholder='Password' required='' autofocus=''>
+                        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign In">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-
