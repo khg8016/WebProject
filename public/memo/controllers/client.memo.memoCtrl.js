@@ -2,8 +2,8 @@
  * Created by Jun on 2016-03-30.
  */
 
-angular.module('memo').controller('memoController', ['$scope', '$routeParams', '$location', 'Authentication', 'Memos',
-    function($scope, $routeParams, $location, Authentication, Memos){
+angular.module('memo').controller('memoController', ['$scope', '$routeParams', '$location', 'ModalService','Authentication', 'Memos', 'Board',
+    function($scope, $routeParams, $location, ModalService, Authentication, Memos, Board){
         $scope.authentication = Authentication;
         $scope.boardId = $routeParams.boardId;
         $scope.find = function(){
@@ -11,8 +11,14 @@ angular.module('memo').controller('memoController', ['$scope', '$routeParams', '
         };
 
         $scope.findOne = function(){
+            console.log("aaaaa");
             $scope.memo = Memos.get({boardId: $routeParams.boardId,
                                       memoId : $routeParams.memoId});
+        };
+
+        $scope.findBoard = function(){ //특정 보드 찾음
+            console.log("find in memo");
+            $scope.board = Board.get({boardId : $routeParams.boardId});
         };
 
         $scope.create = function(){
@@ -51,6 +57,15 @@ angular.module('memo').controller('memoController', ['$scope', '$routeParams', '
                 $location.path('/main/' + $routeParams.boardId + '/memo');
             }, function(errorResponse){
                 $scope.error = errorResponse.data.message;
+            });
+        };
+
+        $scope.viewInfo = function() {
+            ModalService.showModal({
+                templateUrl: 'board/views/client.board.info.html',
+                controller: "memoModalController"
+            }).then(function(modal) {
+                modal.element.modal();
             });
         };
     }

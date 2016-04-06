@@ -7,25 +7,19 @@ angular.module('index').controller('IndexController', ['$scope', 'Authentication
 
         $scope.signIn = function() {
             ModalService.showModal({
-                templateUrl: 'signin.html',
+                templateUrl: 'index/views/signin.html',
                 controller: "modalController"
             }).then(function(modal) {
                 modal.element.modal();
-                /*modal.close.then(function(result) {
-                    $scope.message = "You said ";
-                });*/
             });
         };
 
         $scope.signUp = function() {
             ModalService.showModal({
-                templateUrl: 'signup.html',
+                templateUrl: 'index/views/signup.html',
                 controller: "modalController"
             }).then(function(modal) {
                 modal.element.modal();
-                /*modal.close.then(function(result) {
-                 $scope.message = "You said ";
-                 });*/
             });
         };
     }

@@ -1,3 +1,4 @@
+<!--
 <section data-ng-controller="boardController" data-ng-init="findOne()">
     <h data-ng-bind="board.name"></h>
     <h1>보드 작성자 </h1>
@@ -9,9 +10,41 @@
         </li>
     </ul>
     <a class="btn btn-default" href="/#!/main/{{board._id}}/addMembers">사용자 추가</a>
-    <span data-ng-show="authentication.user._id == board.creator._id"><!-- data-ng-hide="authentication.user != board.creator"-->
-        <a class="btn btn-default" href="/#!/main/{{board._id}}/edit">edit</a> <!-- 보드이름 수정 -->
-        <a class="btn btn-default" href data-ng-click="delete();">지우기</a> <!-- 보드 지우기-->
+    <span data-ng-show="authentication.user._id == board.creator._id">
+        <a class="btn btn-default" href="/#!/main/{{board._id}}/edit">edit</a>
+        <a class="btn btn-default" href data-ng-click="delete();">지우기</a>
     </span>
     <a class="btn btn-default" href="/#!/main/">보드 리스트로</a>
 </section>
+-->
+
+
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">INFORMATION</h4>
+                </div>
+                <div class="modal-body">
+                    <h data-ng-bind="board.name"></h>
+                    <h1>보드 작성자 </h1>
+                    <h data-ng-bind="board.creator.username"></h>
+                    <h1> 소속 멤버 </h1>
+                    <ul>
+                        <li data-ng-repeat="member in board.members">
+                            <p data-ng-bind="member.username"></p>
+                        </li>
+                    </ul>
+                    <a class="btn btn-default" href="/#!/main/{{board._id}}/addMembers">사용자 추가</a>
+                    <span data-ng-show="authentication.user._id == board.creator._id"><!-- data-ng-hide="authentication.user != board.creator"-->
+                        <a class="btn btn-default" href="/#!/main/{{board._id}}/edit">edit</a> <!-- 보드이름 수정 -->
+                        <!-- <a class="btn btn-default" data-ng-click="delete();">지우기</a> 보드 지우기-->
+                    </span>
+                    <!--<a class="btn btn-default" href="/#!/main/">보드 리스트로</a>-->
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>

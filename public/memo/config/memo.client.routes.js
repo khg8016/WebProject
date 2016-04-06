@@ -12,6 +12,8 @@ angular.module('memo').config(['$routeProvider',
             templateUrl : 'memo/views/client.memo.list.html'
         }).when('/main/:boardId/memo/:memoId/view', {
             templateUrl : 'memo/views/client.memo.view.html'
+        }).when('/abc', {
+            templateUrl : 'memo/views/abc.html'
         });
     }
 ]);

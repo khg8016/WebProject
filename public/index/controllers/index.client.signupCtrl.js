@@ -3,8 +3,8 @@
  */
 angular.module('index').controller('SignupController', ['$scope',
     function($scope){
-        $scope.check = function(){
+        /*$scope.check = function(){
             $scope.signUpForm.confirm_pw.$setValidity("unique", $scope.password == $scope.confirm_pw);
-        }
+        }*/
     }
 ]);

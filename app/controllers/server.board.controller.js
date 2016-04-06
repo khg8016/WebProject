@@ -26,7 +26,7 @@ module.exports.create = function(req, res){
                 message: getErrorMessage(err)
             });
         } else{
-            res.json(board);
+            //res.json(board);
         }
     });
 
@@ -43,7 +43,7 @@ module.exports.create = function(req, res){
                         message: getErrorMessage(err1)
                     });
                 } else {
-                    //res.json(user);
+                    res.json(user);
                 }
             });
         }

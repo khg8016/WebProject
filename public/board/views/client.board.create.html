@@ -1,16 +1,29 @@
-<section data-ng-controller="boardController">
-    <form name="boardForm" data-ng-submit="create()" novalidate>
-        <div>
-            <label for ="name">Name</label>
-            <div>
-                <input type="text" data-ng-model ="name" id="name" placeholder="보드명" required>
+
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">CREATE BOARD</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="boardForm" data-ng-submit="create()" novalidate>
+                        <div>
+                            <label for ="name">Board name</label>
+                            <div>
+                                <input type="text" data-ng-model ="name" id="name" placeholder="보드명" required>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" ng-disabled="boardForm.$invalid">완료</button>
+                        </div>
+                        <div data-ng-show="error">
+                            <strong data-ng-bind="error"></strong>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
             </div>
         </div>
-        <div>
-            <button type="submit" ng-disabled="boardForm.$invalid">완료</button>
-        </div>
-        <div data-ng-show="error">
-            <strong data-ng-bind="error"></strong>
-        </div>
-    </form>
-</section>
+    </div>
