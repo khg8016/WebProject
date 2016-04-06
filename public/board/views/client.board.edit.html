@@ -1,3 +1,4 @@
+<!--
 <section data-ng-controller="boardController" data-ng-init="findOne()">
     <form data-ng-submit="update()" novalidate>
         <div>
@@ -14,3 +15,33 @@
         </div>
     </form>
 </section>
+-->
+
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close2('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">RENAME</h4>
+            </div>
+            <div class="modal-body">
+                <form data-ng-submit="update()" novalidate>
+                    <div>
+                        <label for ="name">Name</label>
+                        <div>
+                            <input type="text" data-ng-model ="board.name" id="name" placeholder="보드명" required>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit">rename</button>
+                    </div>
+                    <div data-ng-show="error">
+                        <strong data-ng-bind="error"></strong>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

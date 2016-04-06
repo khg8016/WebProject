@@ -1,19 +1,22 @@
-<section data-ng-controller="memoController" data-ng-init="findMemos()">
-    <a class="btn btn-default" href="/signout">로그아웃</a>
-    <a class="btn btn-default" href="/#!/main/{{boardId}}/memo/create">메모 생성</a>
-    <a class="btn btn-default" href="/#!/main/{{boardId}}/addMembers">사용자 추가</a>
+<section data-ng-controller="boardController" data-ng-init="findMemos() || findOne()">
+    <span data-ng-bind="authentication.user.username"></span>
+    <a href ng-click="viewRename()" data-ng-bind="board.name"></a>
+    <a class="btn btn-default" href="/signout">Log out</a>
+    <a class="btn btn-default" href data-ng-click="viewMemoCreate()" ->Create memos..</a>
+    <a class="btn btn-default" href ng-click="viewInfo()">Board Information</a>
+    <a class="btn btn-default" href ng-click="viewAddMember()">add members..</a>
+    <a class="btn btn-default" href="/#!/main/">Board list</a>
     <h1>Memos</h1>
     <ul>
         <li data-ng-repeat="memo in memos">
-            <h data-ng-bind="memo.title"></h>
+            <a data-ng-bind="memo.title" data-ng-href="/#!/main/{{boardId}}/memo/{{memo._id}}/view"data-ng-click="viewMemo()"></a>
             <br>
             <p data-ng-bind="memo.contents"></p>
             <br>
-            <small data-ng-bind="memo.created | date:'medium'"></small>
-            <small data-ng-bind="memo.creator.username"></small>
-            <br>
-            <a class="btn btn-default" href="/#!/main/{{memo._id}}">edit</a>
-            <a class="btn btn-default" href data-ng-click="delete(memo);">지우기</a>
+            <div data-ng-show="authentication.user._id == memo.creator">
+                <a class="btn btn-default" href="" data-ng-click="viewEdit()">edit</a>
+                <a class="btn btn-default" href data-ng-click="deleteMemo(memo);">지우기</a>
+            </div>
         </li>
     </ul>
 </section>

@@ -14,6 +14,10 @@ angular.module('board').config(['$routeProvider',
             templateUrl : 'board/views/client.board.edit.html'
         }).when('/main/:boardId/info', {
             templateUrl : 'board/views/client.board.info.html'
+        }).when('/main/:boardId/memo', {
+            templateUrl : 'board/views/client.board.view.html'
+        }).when('/main/:boardId/memo/:memoId/view', {
+            templateUrl : 'board/views/client.board.view.html'
         }).otherwise({
             redirectTo: '/main'
         });

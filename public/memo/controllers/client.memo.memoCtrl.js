@@ -11,7 +11,6 @@ angular.module('memo').controller('memoController', ['$scope', '$routeParams', '
         };
 
         $scope.findOne = function(){
-            console.log("aaaaa");
             $scope.memo = Memos.get({boardId: $routeParams.boardId,
                                       memoId : $routeParams.memoId});
         };
@@ -60,13 +59,5 @@ angular.module('memo').controller('memoController', ['$scope', '$routeParams', '
             });
         };
 
-        $scope.viewInfo = function() {
-            ModalService.showModal({
-                templateUrl: 'board/views/client.board.info.html',
-                controller: "memoModalController"
-            }).then(function(modal) {
-                modal.element.modal();
-            });
-        };
     }
 ]);

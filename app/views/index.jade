@@ -14,7 +14,7 @@ html
                 window.user = 'null';
             else
                 window.user = !{user};
-            var message = "!{errorMessage}";
+            window.message = "!{errorMessage}";
             if(message != "")
                 alert(message);
         script(type="text/javascript" src="/lib/jquery/dist/jquery.min.js")
@@ -26,13 +26,13 @@ html
         script(type="text/javascript" src="/index/index.client.module.js")
         script(type="text/javascript" src="/index/config/index.client.routes.js")
         script(type="text/javascript" src="/index/controllers/index.client.controller.js")
-        script(type="text/javascript" src="/index/controllers/index.client.signupCtrl.js")
         script(type="text/javascript" src="/index/controllers/index.client.modalCtrl.js")
         script(type="text/javascript" src="/index/services/index.client.service.js")
         script(type="text/javascript" src="/memo/memo.client.module.js")
         script(type="text/javascript" src="/memo/config/memo.client.routes.js")
         script(type="text/javascript" src="/memo/controllers/client.memo.memoCtrl.js")
         script(type="text/javascript" src="/memo/controllers/client.memo.memoModalCtrl.js")
+        script(type="text/javascript" src="/memo/controllers/client.memo.memoModalCtrl2.js")
         script(type="text/javascript" src="/memo/services/client.memo.service.js")
         script(type="text/javascript" src="/board/client.board.module.js")
         script(type="text/javascript" src="/board/config/client.board.routes.js")

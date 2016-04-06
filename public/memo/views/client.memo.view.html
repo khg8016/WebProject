@@ -1,3 +1,4 @@
+<!--
 <section data-ng-controller="memoController" data-ng-init="findOne()">
     <h data-ng-bind="memo.title"></h>
     <br>
@@ -6,4 +7,26 @@
     <small data-ng-bind="memo.created | date:'medium'"></small>
     <small data-ng-bind="memo.creator.username"></small>
     <a class="btn btn-default" href="/#!/main/{{boardId}}/memo/">메모 리스트로</a>
-</section>
+</section>-->
+
+
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" data-ng-bind="memo.title"></h4>
+            </div>
+            <div class="modal-body">
+                <br>
+                <p data-ng-bind="memo.contents"></p>
+                <br>
+                <small data-ng-bind="memo.created | date:'medium'"></small>
+                <small data-ng-bind="memo.creator.username"></small>
+                <!--<a class="btn btn-default" href="/#!/main/{{boardId}}/memo/">메모 리스트로</a>-->
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,12 +8,8 @@ angular.module('memo').config(['$routeProvider',
            templateUrl : 'memo/views/client.memo.create.html'
         }).when('/main/:boardId/memo/:memoId/edit', {
             templateUrl : 'memo/views/client.memo.edit.html'
-        }).when('/main/:boardId/memo', {
-            templateUrl : 'memo/views/client.memo.list.html'
-        }).when('/main/:boardId/memo/:memoId/view', {
-            templateUrl : 'memo/views/client.memo.view.html'
-        }).when('/abc', {
-            templateUrl : 'memo/views/abc.html'
+        }).otherwise({
+            redirectTo: '/main/:boardId/memo'
         });
     }
 ]);

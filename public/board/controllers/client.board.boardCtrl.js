@@ -3,8 +3,8 @@
  */
 'use strict';
 
-angular.module('board').controller('boardController', ['$scope', '$routeParams', '$location', 'ModalService', 'Authentication', 'Board',
-    function($scope, $routeParams, $location, ModalService, Authentication, Board){
+angular.module('board').controller('boardController', ['$scope', '$routeParams', '$location', 'ModalService', 'Authentication', 'Memos', 'Board',
+    function($scope, $routeParams, $location, ModalService, Authentication, Memos, Board){
         $scope.boardId = $routeParams.boardId;
         $scope.authentication = Authentication;
 
@@ -13,7 +13,7 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
         };
 
         $scope.findMemos = function(){
-            $scope.memos = Board.query({boardId : $routeParams.boardId});
+            $scope.memos = Memos.query({boardId: $routeParams.boardId});
         };
 
         $scope.findOne = function(){ //특정 보드 찾음
@@ -41,6 +41,24 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
                 $scope.board.$remove(function (){
                     $location.path('/main');
                 });*/
+        };
+
+        $scope.deleteMemo = function(memo){
+            if(memo){
+                memo.$remove({boardId: $routeParams.boardId},
+                    function(){
+                        for(var i in $scope.memos){
+                            if($scope.memos[i] === memo){
+                                $scope.memos.splice(i, 1);
+                            }
+                        }
+                    });
+            } else {
+                $scope.memo.$remove({boardId: $routeParams.boardId},
+                    function (){
+                        $location.path('/main/' + $routeParams.boardId + '/memo');
+                    });
+            }
         };
 
         $scope.addMember = function(req, res){
@@ -82,6 +100,43 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
                 modal.element.modal();
             });
         };
+
+        $scope.viewRename = function() {
+            ModalService.showModal({
+                templateUrl: 'board/views/client.board.edit.html',
+                controller: "boardModalController"
+            }).then(function(modal) {
+                modal.element.modal();
+            });
+        };
+
+        $scope.viewEdit = function() {
+            ModalService.showModal({
+                templateUrl: 'memo/views/client.memo.edit.html',
+                controller: "memoModalController"
+            }).then(function(modal) {
+                modal.element.modal();
+            });
+        };
+
+        $scope.viewMemo = function() {
+            ModalService.showModal({
+                templateUrl: 'memo/views/client.memo.view.html',
+                controller: "memoModalController"
+            }).then(function(modal) {
+                modal.element.modal();
+            });
+        };
+
+        $scope.viewMemoCreate = function() {
+            ModalService.showModal({
+                templateUrl: 'memo/views/client.memo.create.html',
+                controller: "memoModalController2"
+            }).then(function(modal) {
+                modal.element.modal();
+            });
+        };
+
     }
 ]);
 
