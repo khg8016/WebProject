@@ -3,8 +3,8 @@
  */
 
 
-angular.module('memo').controller('memoModalController2', ['$scope', '$location', '$routeParams','close', 'Memos',
-    function($scope, $location, $routeParams, close, Memos) {
+angular.module('memo').controller('memoModalController2', ['$scope', '$location', '$routeParams','$route', 'close', 'Memos',
+    function($scope, $location, $routeParams, $route, close, Memos) {
 
 
         $scope.close = function(result) {
@@ -20,7 +20,7 @@ angular.module('memo').controller('memoModalController2', ['$scope', '$location'
 
             memo.$save({boardId: $routeParams.boardId}, function(response){
                 console.log("savesave");
-                $location.path('/main/' + $routeParams.boardId + '/memo');
+                $route.reload();
                 close(100);
             }, function(errorResponse){
                 $scope.error = errorResponse.data.message;

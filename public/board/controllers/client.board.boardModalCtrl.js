@@ -1,8 +1,8 @@
 /**
  * Created by Jun on 2016-04-06.
  */
-angular.module('board').controller('boardModalController', ['$scope', '$location', '$routeParams','close', 'Board',
-    function($scope, $location, $routeParams, close, Board) {
+angular.module('board').controller('boardModalController', ['$scope', '$location', '$routeParams', '$route','close', 'Board',
+    function($scope, $location, $routeParams,$route, close, Board) {
         $scope.board = Board.get({boardId : $routeParams.boardId});
 
         $scope.close1 = function(result) {
@@ -44,7 +44,8 @@ angular.module('board').controller('boardModalController', ['$scope', '$location
         $scope.update = function(){//보드 이름 바꾸기
             $scope.board.$update(function(response){
                 close(100);
-                $location.path('/main/' + $routeParams.boardId+ "/memo");
+                $route.reload();
+                //$location.path('/main/' + $routeParams.boardId+ "/memo");
             }, function(errorResponse){
                 $scope.error = errorResponse.data.message;
             });

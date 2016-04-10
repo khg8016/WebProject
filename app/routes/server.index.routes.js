@@ -11,7 +11,7 @@ module.exports = function(app){
     app.post('/signup', users.signUp);
     app.post('/signin', passport.authenticate('local', {
         successRedirect: '/#!/main',
-        failureRedirect: '/#!',
+        failureRedirect: '/#!/signin',
         failureFlash: true
     }));
     app.get('/signout', users.signOut);
