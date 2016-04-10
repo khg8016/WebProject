@@ -3,7 +3,7 @@
  */
 angular.module('board').controller('boardModalController', ['$scope', '$location', '$routeParams', '$route','close', 'Board',
     function($scope, $location, $routeParams,$route, close, Board) {
-        $scope.board = Board.get({boardId : $routeParams.boardId});
+
 
         $scope.close1 = function(result) {
             close(result, 100);

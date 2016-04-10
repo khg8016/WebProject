@@ -5,7 +5,7 @@
         <a class="btn btn-default" href ng-click="viewCreate()">보드 생성</a>
     </div>
     <h1>Boards</h1>
-    <ul>
+    <ul scroll-glue>
         <li data-ng-repeat="board in boards">
             <a class="btn btn-default" data-ng-href="#!/main/{{board._id}}/memo" data-ng-bind="board.name"></a> <!-- 보드 들어가기 -->
             <span data-ng-show="authentication.user._id == board.creator">

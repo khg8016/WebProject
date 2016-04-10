@@ -1,4 +1,5 @@
-<section data-ng-controller="boardController" data-ng-init="findMemos() || findOne() || viewMemo()">
+<section data-ng-controller="boardController" ng-cloak data-ng-init="findMemos() || findOne() || viewMemo()" class="ng-cloak">
+
     <span data-ng-bind="authentication.user.username"></span>
     <a href ng-click="viewRename()" data-ng-bind="board.name"></a>
     <a class="btn btn-default" href="/signout">Log out</a>
@@ -7,7 +8,7 @@
     <a class="btn btn-default" href ng-click="viewAddMember()">add members..</a>
     <a class="btn btn-default" href="/#!/main/">Board list</a>
     <h1>Memos</h1>
-    <ul>
+    <ul scroll-glue>
         <li data-ng-repeat="memo in memos">
             <a data-ng-bind="memo.title" href="/#!/main/{{boardId}}/memo/{{memo._id}}/view" data-ng-click="viewMemo()"></a>
             <br>

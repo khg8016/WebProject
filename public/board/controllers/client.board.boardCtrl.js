@@ -8,6 +8,7 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
         $scope.boardId = $routeParams.boardId;
         $scope.authentication = Authentication;
 
+
         $scope.findBoards = function(){ //보드들을 찾음
             $scope.boards = Board.query();
         };
@@ -86,7 +87,7 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
         $scope.viewInfo = function() {
             ModalService.showModal({
                 templateUrl: 'board/views/client.board.info.html',
-                controller: "boardModalController"
+                controller: "infoModalController"
             }).then(function(modal) {
                 modal.element.modal();
             });
@@ -135,6 +136,10 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
             }).then(function(modal) {
                 modal.element.modal();
             });
+        };
+
+        $scope.ff = function(){
+            viewMemo();
         };
 
     }

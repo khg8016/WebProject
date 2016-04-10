@@ -23,7 +23,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" ng-click="close2('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">INFORMATION</h4>
                 </div>
                 <div class="modal-body">
@@ -37,11 +37,7 @@
                         </li>
                     </ul>
                     <span data-ng-show="authentication.user._id == board.creator._id"><!-- data-ng-hide="authentication.user != board.creator"-->
-                      <!--  <a class="btn btn-default" href="/#!/main/{{board._id}}/addMembers">사용자 추가</a>
-                        <a class="btn btn-default" href="/#!/main/{{board._id}}/edit">rename</a> --><!-- 보드이름 수정 -->
-                        <!-- <a class="btn btn-default" data-ng-click="delete();">지우기</a> 보드 지우기-->
                     </span>
-                    <!--<a class="btn btn-default" href="/#!/main/">보드 리스트로</a>-->
                 </div>
                 <div class="modal-footer">
                 </div>
