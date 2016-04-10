@@ -9,6 +9,10 @@ angular.module('memo').factory('Memos',['$resource',
         }, {
             update: {
                 method : 'PUT'
+            },
+            query: {
+                method : 'GET',
+                isArray : true
             }
         });
     }

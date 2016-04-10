@@ -6,6 +6,8 @@ var users = require('../../app/controllers/server.user.controller'),
 
 module.exports = function(app){
     app.get('/', users.index);
+
+    //app.post('/api/signup', users.signUp);
     app.post('/signup', users.signUp);
     app.post('/signin', passport.authenticate('local', {
         successRedirect: '/#!/main',

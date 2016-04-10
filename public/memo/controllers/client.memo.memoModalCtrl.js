@@ -8,8 +8,6 @@ angular.module('memo').controller('memoModalController', ['$scope', '$location',
         $scope.authentication = Authentication;
         $scope.memo = Memos.get({boardId: $routeParams.boardId,
                                   memoId : $routeParams.memoId});
-        console.log("보드 아디"+$routeParams.boardId);
-        console.log("메모 아디"+$routeParams.memoId);
 
         $scope.close = function(result) {
             close(result, 100);

@@ -112,7 +112,7 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
 
         $scope.viewEdit = function() {
             ModalService.showModal({
-                templateUrl: 'memo/views/client.memo.edit.html',
+                templateUrl: 'memo/views/client.memo.modalEdit.html',
                 controller: "memoModalController"
             }).then(function(modal) {
                 modal.element.modal();
@@ -121,7 +121,7 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
 
         $scope.viewMemo = function() {
             ModalService.showModal({
-                templateUrl: 'memo/views/client.memo.view.html',
+                templateUrl: 'memo/views/client.memo.modalView.html',
                 controller: "memoModalController"
             }).then(function(modal) {
                 modal.element.modal();
@@ -130,7 +130,7 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
 
         $scope.viewMemoCreate = function() {
             ModalService.showModal({
-                templateUrl: 'memo/views/client.memo.create.html',
+                templateUrl: 'memo/views/client.memo.modalCreate.html',
                 controller: "memoModalController2"
             }).then(function(modal) {
                 modal.element.modal();

@@ -147,6 +147,7 @@ module.exports.addMember = function(req, res){
 
 module.exports.boardList = function(req, res){
     //var user = req.user;
+    console.log("boardlist");
     User.findOne({_id : req.user._id}).populate('boards').exec(function(err, user) {
         if (err) {
             return res.status(400).send({

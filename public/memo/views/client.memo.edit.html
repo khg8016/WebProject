@@ -1,60 +1,22 @@
-<!--
-<section data-ng-controller="memoController" data-ng-init="findOne()">
-    <form data-ng-submit="update()" novalidate>
-        <div>
-            <label for ="title">Title</label>
-            <div>
-                <input type="text" data-ng-model ="memo.title" id="title" placeholder="Title" required>
+<section data-ng-controller="boardController" data-ng-init="findMemos() || findOne() || viewEdit()">
+    <span data-ng-bind="authentication.user.username"></span>
+    <a href ng-click="viewRename()" data-ng-bind="board.name"></a>
+    <a class="btn btn-default" href="/signout">Log out</a>
+    <a class="btn btn-default" href data-ng-click="viewMemoCreate()" ->Create memos..</a>
+    <a class="btn btn-default" href ng-click="viewInfo()">Board Information</a>
+    <a class="btn btn-default" href ng-click="viewAddMember()">add members..</a>
+    <a class="btn btn-default" href="/#!/main/">Board list</a>
+    <h1>Memos</h1>
+    <ul>
+        <li data-ng-repeat="memo in memos">
+            <a data-ng-bind="memo.title" href="/#!/main/{{boardId}}/memo/{{memo._id}}/view" data-ng-click="viewMemo()"></a>
+            <br>
+            <p data-ng-bind="memo.contents"></p>
+            <br>
+            <div data-ng-show="authentication.user._id == memo.creator">
+                <a class="btn btn-default" href="" data-ng-click="viewEdit()">edit</a>
+                <a class="btn btn-default" href data-ng-click="deleteMemo(memo);">지우기</a>
             </div>
-        </div>
-        <div>
-            <label for="contents">Content</label>
-            <div>
-                <textarea data-ng-model="memo.contents" id="contents" cols="30" rows="10" placeholder="Contents"></textarea>
-            </div>
-        </div>
-        <div>
-            <button type="submit">완료</button>
-            <a class="btn btn-default" href ng-click="delete();">지우기</a>
-        </div>
-        <div data-ng-show="error">
-            <strong data-ng-bind="error"></strong>
-        </div>
-    </form>
-</section>-->
-
-<div class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">CREATE MEMO</h4>
-            </div>
-            <div class="modal-body">
-                <form data-ng-submit="update()" novalidate>
-                    <div>
-                        <label for ="title">Title</label>
-                        <div>
-                            <input type="text" data-ng-model ="memo.title" id="title" placeholder="Title" required>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="contents">Content</label>
-                        <div>
-                            <textarea data-ng-model="memo.contents" id="contents" cols="30" rows="10" placeholder="Contents"></textarea>
-                        </div>
-                    </div>
-                    <div>
-                        <button type="submit">완료</button>
-                        <a class="btn btn-default" href ng-click="delete();">지우기</a>
-                    </div>
-                    <div data-ng-show="error">
-                        <strong data-ng-bind="error"></strong>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
+        </li>
+    </ul>
+</section>

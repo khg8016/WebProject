@@ -28,6 +28,9 @@ var getErrorMessage = function(err){ //err은 mongoose error 객체. singup 페�
 
 module.exports.index = function(req, res){
     var message = req.flash('error')[0];
+    console.log("render index");
+    if(req.user)
+        console.log(req.user.username);
     res.render('index', {
             user : JSON.stringify(req.user) || 'undefined',
             errorMessage : message
@@ -36,6 +39,7 @@ module.exports.index = function(req, res){
 
 module.exports.signUp = function(req, res, next){
     if(!req.user) {
+        console.log("abacbabc");
         var user = new User(req.body);
         user.newSalt();
         user.password = user.hashPassword(user.password);
@@ -44,12 +48,18 @@ module.exports.signUp = function(req, res, next){
                 var message = getErrorMessage(err);
                 req.flash('error', message);
                 return res.redirect('/#!');
+                /*return res.status(401).send({
+                    message: message
+                });*/
             }
 
             req.login(user, function(err) { //이걸 실행하면 serialze 메서드가 실행되고 serialize에서 사용자 세션(req.user) 생성.passport.authenticate()메서드 사용할 때 자동으로 호출되기도 함.
+                console.log("login");
                 if (err)
                     return next(err);
                 return res.redirect('/#!/main');
+
+
             });
         });
 
@@ -71,5 +81,3 @@ module.exports.requiresLogin = function(req, res, next){
     }
     next();
 };
-
-

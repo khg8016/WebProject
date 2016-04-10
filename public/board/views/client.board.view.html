@@ -9,12 +9,12 @@
     <h1>Memos</h1>
     <ul>
         <li data-ng-repeat="memo in memos">
-            <a data-ng-bind="memo.title" data-ng-href="/#!/main/{{boardId}}/memo/{{memo._id}}/view"data-ng-click="viewMemo()"></a>
+            <a data-ng-bind="memo.title" href="/#!/main/{{boardId}}/memo/{{memo._id}}/view"></a>
             <br>
             <p data-ng-bind="memo.contents"></p>
             <br>
             <div data-ng-show="authentication.user._id == memo.creator">
-                <a class="btn btn-default" href="" data-ng-click="viewEdit()">edit</a>
+                <a class="btn btn-default" href="/#!/main/{{boardId}}/memo/{{memo._id}}/edit">edit</a>
                 <a class="btn btn-default" href data-ng-click="deleteMemo(memo);">지우기</a>
             </div>
         </li>
