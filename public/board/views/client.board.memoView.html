@@ -5,11 +5,11 @@
     <a class="btn btn-default" href data-ng-click="viewMemoCreate()" ->Create memos..</a>
     <a class="btn btn-default" href ng-click="viewInfo()">Board Information</a>
     <a class="btn btn-default" href ng-click="viewAddMember()">add members..</a>
-    <a class="btn btn-default" href="/#!/main/">Board list</a>
+    <a class="btn btn-default" href="/webmemo#!/main/">Board list</a>
     <h1>Memos</h1>
     <ul>
         <li data-ng-repeat="memo in memos">
-            <a data-ng-bind="memo.title" href="/#!/main/{{boardId}}/memo/{{memo._id}}/view" data-ng-click="viewMemo()"></a>
+            <a data-ng-bind="memo.title" href="/webmemo#!/main/{{boardId}}/memo/{{memo._id}}/view" data-ng-click="viewMemo()"></a>
             <br>
             <p data-ng-bind="memo.contents"></p>
             <br>

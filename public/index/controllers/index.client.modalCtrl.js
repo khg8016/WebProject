@@ -1,8 +1,8 @@
 /**
  * Created by Jun on 2016-04-05.
  */
-angular.module('index').controller('modalController', ['$scope', '$location','close', 'Authentication', 'SignIn', 'SignUp',
-    function($scope, $location, close, Authentication, SignIn, SignUp) {
+angular.module('index').controller('modalController', ['$scope', '$location', '$http','close', 'Authentication',
+    function($scope, $location, $http, close, Authentication) {
 
         $scope.message = Authentication.message;
 
@@ -11,38 +11,52 @@ angular.module('index').controller('modalController', ['$scope', '$location','cl
         };
 
         $scope.check = function(){
-            $scope.signUpForm.confirm_pw.$setValidity("unique", $scope.password == $scope.confirm_pw);
+            $scope.signUpForm.confirm_pw.$setValidity("unique", $scope.FormData.password == $scope.confirm_pw);
+        };
+
+        $scope.signUp = function() {
+            var data = {
+                username: this.username,
+                password : this.password
+            };
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3000/signup',
+                data: data
+            }).success(function (data) {
+                if(data.msg != "")
+                    $scope.message = data.msg;
+                if(data.msg =="") {
+                    window.location = '/webmemo#!/main';
+                }
+            }).error(function(data){
+                console.log("error" + data.msg);
+                $scope.messgae = data.msg;
+            });
         };
 
         $scope.signIn = function(){
-             var logInData = new SignIn({
-                 username : this.username,
-                 password : this.password
-             });
-
-            logInData.$save(function(response){
-            }, function(errorResponse){
-                $scope.message = errorResponse.data.message;
-            });
-
-        };
-
-        $scope.signUp = function(){
-            console.log("사인업");
-
-            var signUpData = new SignUp({
-                username : this.username,
+            var data = {
+                username: this.username,
                 password : this.password
-            });
+            };
 
-            signUpData.$save(function(response){
-                close(100);
-                console.log("savesave");
-                $location.path('/main/');
-            }, function(errorResponse){
-                console.log("failfail");
-                $scope.message = errorResponse.data.message;
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3000/signin',
+                data: data
+            }).success(function (data) {
+                console.log("suceess");
+                if(data.msg != "")
+                    $scope.message = data.msg;
+                if(data.msg =="") {
+                    window.location = '/webmemo#!/main';
+                }
+            }).error(function(data){
+                console.log("in error" + data.msg);
+                $scope.messgae = data.msg;
             });
         };
+
     }
 ]);

@@ -2,7 +2,8 @@
  * Created by Jun on 2016-03-21.
  */
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    passport = require('passport');
 
 var getErrorMessage = function(err){ //err은 mongoose error 객체. singup 페이지에서 가입시 db에 문제 있을 경우 해당 메세지를 flash 객체에 넣어주고 view에 띄워줌
     var message = '';
@@ -65,6 +66,35 @@ module.exports.signUp = function(req, res, next){
         res.redirect('/#!/main');
     }
 };
+
+/*
+module.exports.signIn = function(req, res, next){
+
+    passport.authenticate('local');
+
+        var user = new User(req.body);
+        user.newSalt();
+        user.password = user.hashPassword(user.password);
+        user.save(function (err) {
+            if (err) {
+                console.log("sssss");
+                var message = getErrorMessage(err);
+                req.flash('error', message);
+                console.log(message);
+                //return res.redirect('/#!/signup');
+                return res.send(200,{'Content-Type' : 'text/html', 'msg' : message});
+            }
+            req.login(user, function (err1) { //이걸 실행하면 serialze 메서드가 실행되고 serialize에서 사용자 세션(req.user) 생성.passport.authenticate()메서드 사용할 때 자동으로 호출되기도 함.
+                console.log("login");
+                if (err1) {
+                    console.log("login error");
+                    return next(err1);
+                }
+                res.send({msg : ""});
+            });
+
+        });
+};*/
 
 module.exports.signOut = function(req, res, next){
     if(req.user) req.logout();

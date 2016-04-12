@@ -1,8 +1,8 @@
 <section ng-controller="IndexController">
 
     <div data-ng-show="!authentication.user">
-        <a href="/#!/signup">Sign Up</a>
-        <a href="/#!/signin">Log in</a>
+        <a href ng-click="modalSignUp()">Sign Up</a>
+        <a href ng-click="modalSignIn()">Log in</a>
     </div>
 
 </section>

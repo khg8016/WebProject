@@ -30,6 +30,7 @@ module.exports = function() {
                 });
             }
 
+            console.log("localocal");
             return done(null, user);
         });
     }));

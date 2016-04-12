@@ -147,7 +147,7 @@ module.exports.addMember = function(req, res){
 
 module.exports.renderBoard = function(req, res){
     var message = req.flash('error')[0];
-    console.log("render index");
+    console.log("render board");
     res.render('board', {
         user : JSON.stringify(req.user) || 'undefined'
     });

@@ -19,6 +19,7 @@ module.exports = function(app){
         delete(users.requiresLogin, board.hasAuthorization, board.delete);
 
     app.get('/webmemo', board.renderBoard);
+
     app.param('boardId', board.boardById);
 
 };
