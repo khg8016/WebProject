@@ -1,11 +1,29 @@
+<!--<section ng-controller="IndexController" ng-cloak class="ng-cloak">
+        <h2 class="form-signin-heading">쉽고 빠른 가입</h2>
+        <br>
+        <input type='text' ng-model="username" class='form-control' name='username' placeholder='User name' required autofocus=''>
+
+        <br>
+        <input ng-model="password" ng-change="check()" class='form-control' ng-pattern="/^(?=.*\d)(?=.*[a-z]).{6,16}$/" type='password' name='password' placeholder='비밀번호' required autofocus=''>
+
+        <br>
+        <input ng-model="confirm_pw" ng-change="check()" class='form-control' type='password' name='confirm_pw' placeholder='비밀번호 재확인' required autofocus=''>
+
+        <br>
+        <br>
+        <input type="button" class="btn btn-lg btn-primary btn-block" value="가입하기" ng-click="c()"/>
+        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href='/'" >메인 화면으로</button>
+
+    <div data-ng-show="message">
+        <strong data-ng-bind="message"></strong>
+    </div>
+</section>-->
 
 <section ng-controller="IndexController" ng-cloak class="ng-cloak">
-    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../stylesheet/signin.css">
     <form name="signUpForm" class="form-signin" action='/signup' method='post'>
         <h2 class="form-signin-heading">쉽고 빠른 가입</h2>
         <br>
-        <input type='text' class='form-control' name='username' placeholder='User name' required autofocus=''>
+        <input ng-model="username" type='text' class='form-control' name='username' placeholder='User name' required autofocus=''>
 
         <br>
         <input ng-model="password" ng-change="check()" class='form-control' ng-pattern="/^(?=.*\d)(?=.*[a-z]).{6,16}$/" type='password' name='password' placeholder='비밀번호' required autofocus=''>
@@ -17,11 +35,11 @@
         <h ng-show="password == confirm_pw && confirm_pw.length > 0" role="alert">비밀번호가 일치합니다.</h>
         <br>
         <br>
-        <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="signUpForm.$invalid">가입하기</button>
+        <input type="button" class="btn btn-lg btn-primary btn-block" value="가입하기" ng-click="c()"/>
         <button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href='/'" >메인 화면으로</button>
     </form>
-    <div data-ng-show="authentication.message">
-        <strong data-ng-bind="authentication.message"></strong>
+    <div data-ng-show="message">
+        <strong data-ng-bind="message"></strong>
     </div>
 </section>
 

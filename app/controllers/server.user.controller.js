@@ -36,25 +36,29 @@ module.exports.index = function(req, res){
 };
 
 module.exports.signUp = function(req, res, next){
+
     if(!req.user) {
         var user = new User(req.body);
         user.newSalt();
         user.password = user.hashPassword(user.password);
         user.save(function (err) {
             if (err) {
+                console.log("sssss");
                 var message = getErrorMessage(err);
                 req.flash('error', message);
-                return res.redirect('/#!/signup');
+                console.log(message);
+                //return res.redirect('/#!/signup');
+                return res.send(200,{'Content-Type' : 'text/html', 'msg' : message});
             }
-
-            req.login(user, function(err) { //이걸 실행하면 serialze 메서드가 실행되고 serialize에서 사용자 세션(req.user) 생성.passport.authenticate()메서드 사용할 때 자동으로 호출되기도 함.
+            req.login(user, function (err1) { //이걸 실행하면 serialze 메서드가 실행되고 serialize에서 사용자 세션(req.user) 생성.passport.authenticate()메서드 사용할 때 자동으로 호출되기도 함.
                 console.log("login");
-                if (err)
-                    return next(err);
-                return res.redirect('/#!/main');
-
-
+                if (err1) {
+                    console.log("login error");
+                    return next(err1);
+                }
+                res.send({msg : ""});
             });
+
         });
 
     }else{

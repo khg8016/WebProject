@@ -3,8 +3,8 @@
  */
 'use strict';
 
-angular.module('board').controller('boardController', ['$scope', '$routeParams', '$location', 'ModalService', 'Authentication', 'Memos', 'Board',
-    function($scope, $routeParams, $location, ModalService, Authentication, Memos, Board){
+angular.module('board').controller('boardController', ['$scope', '$routeParams', '$route','$location', 'ModalService', 'Authentication', 'Memos', 'Board',
+    function($scope, $routeParams, $route, $location, ModalService, Authentication, Memos, Board){
         $scope.boardId = $routeParams.boardId;
         $scope.authentication = Authentication;
 

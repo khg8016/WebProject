@@ -10,7 +10,7 @@ module.exports = function(app){
     //app.post('/api/signup', users.signUp);
     app.post('/signup', users.signUp);
     app.post('/signin', passport.authenticate('local', {
-        successRedirect: '/#!/main',
+        successRedirect: '/webmemo#!/main',
         failureRedirect: '/#!/signin',
         failureFlash: true
     }));
