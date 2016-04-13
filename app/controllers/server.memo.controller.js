@@ -88,7 +88,7 @@ module.exports.delete = function(req, res){
 };
 
 module.exports.memoById = function(req, res, next, id){
-    Memo.findById(id).populate('creator', 'username').exec(function(err, memo){
+    Memo.findById(id).populate('creator comments.creator').exec(function(err, memo){
         if(err) return next(err);
         if(!memo) return next(new Error('Failed to load' | id));
 
@@ -110,4 +110,38 @@ exports.hasAuthorization = function(req, res, next){ //글 작성자가 수정�
         });
     }
     next();
+};
+
+module.exports.addComment = function(req ,res){
+    var memo = req.memo;
+    console.log("add comment");
+    var comment = {
+        content : req.body.content,
+        created : Date.now(),
+        creator : req.user
+    };
+    memo.comments.push(comment);
+
+
+    memo.save(function(err){
+        if(err){
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else{
+            res.json(memo);
+        }
+    });
+};
+
+module.exports.deleteComment = function(req ,res){
+
+};
+
+module.exports.updateComment = function(req ,res){
+
+};
+
+module.exports.getComment = function(req ,res){
+
 };

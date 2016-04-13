@@ -23,7 +23,21 @@ var memoSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
-    }
+    },
+    comments : [{
+        content : {
+            type : String,
+            trim : true
+        } ,
+        created : {
+            type: Date,
+            default : Date.now()
+        } ,
+        creator : {
+            type: Schema.ObjectId,
+            ref : 'User'
+        }
+    }]
 });
 
 mongoose.model('Memo', memoSchema);

@@ -12,8 +12,13 @@ module.exports = function(app){
 
     app.route('/api/main/:boardId/memo/:memoId').
         get(users.requiresLogin, memos.read).
-        put(users.requiresLogin, memos.update).
-        delete(users.requiresLogin, memos.delete);
+        put(users.requiresLogin, memos.hasAuthorization, memos.update).
+        delete(users.requiresLogin, memos.hasAuthorization, memos.delete);
+
+    app.route('/comment/main/:boardId/memo/:memoId').
+        post(users.requiresLogin, memos.addComment).
+        put(users.requiresLogin, memos.updateComment).
+        delete(users.requiresLogin, memos.deleteComment);
 
     app.param('boardId', board.boardById);
     app.param('memoId', memos.memoById);
