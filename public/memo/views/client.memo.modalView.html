@@ -36,7 +36,7 @@
                     </div>
                 </form>
                 <br>
-                <div data-ng-repeat="comment in memo.comments">
+                <div data-ng-repeat="comment in comments">
                     <span data-ng-bind="comment.creator.username"></span>
                     <span data-ng-bind="comment.content"></span>
                     <br>
@@ -45,7 +45,6 @@
                         <a class="btn btn-default" href data-ng-click="deleteComment(comment);">X</a>
                     </span>
                 </div>
-                <!--<a class="btn btn-default" href="/#!/main/{{boardId}}/memo/">메모 리스트로</a>-->
             </div>
 
             <div class="modal-footer">

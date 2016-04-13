@@ -16,6 +16,7 @@ module.exports = function(app){
         delete(users.requiresLogin, memos.hasAuthorization, memos.delete);
 
     app.route('/comment/main/:boardId/memo/:memoId').
+        get(memos.getComment).
         post(users.requiresLogin, memos.addComment).
         put(users.requiresLogin, memos.updateComment).
         delete(users.requiresLogin, memos.deleteComment);

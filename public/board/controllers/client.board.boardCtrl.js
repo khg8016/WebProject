@@ -21,13 +21,6 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
             $scope.board = Board.get({boardId : $routeParams.boardId});
         };
 
-        $scope.update = function(){//보드 이름 바꾸기
-            $scope.board.$update(function(response){
-                $location.path('/main/' + $routeParams.boardId+ "/info");
-            }, function(errorResponse){
-                $scope.error = errorResponse.data.message;
-            });
-        };
 
         $scope.delete = function(board){// 보드 제거
             if(board){
@@ -38,10 +31,7 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
                         }
                     }
                 });
-            } /*else
-                $scope.board.$remove(function (){
-                    $location.path('/main');
-                });*/
+            }
         };
 
         $scope.deleteMemo = function(memo){
@@ -60,19 +50,6 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
                         $location.path('/main/' + $routeParams.boardId + '/memo');
                     });
             }
-        };
-
-        $scope.addMember = function(req, res){
-            var user = new Board({
-                username : this.username
-            });
-
-            user.$save({boardId : $routeParams.boardId}, function(response){
-                $location.path('/main/' + $routeParams.boardId+ "/info");
-            }, function(errorResponse){
-                $scope.error = errorResponse.data.message;
-            });
-
         };
 
         $scope.viewCreate = function() {
@@ -138,9 +115,6 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
             });
         };
 
-        $scope.ff = function(){
-            viewMemo();
-        };
 
     }
 ]);

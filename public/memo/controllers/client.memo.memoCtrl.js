@@ -42,11 +42,6 @@ angular.module('memo').controller('memoController', ['$scope', '$routeParams', '
                         }
                     }
                 });
-            } else {
-                $scope.memo.$remove({boardId: $routeParams.boardId},
-                    function (){
-                    $location.path('/main/' + $routeParams.boardId + '/memo');
-                });
             }
         };
 

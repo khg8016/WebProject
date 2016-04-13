@@ -129,13 +129,26 @@ module.exports.addComment = function(req ,res){
                 message: getErrorMessage(err)
             });
         } else{
-            res.json(memo);
+            res.json(comment);
         }
     });
 };
 
 module.exports.deleteComment = function(req ,res){
-
+    var memo = req.memo;
+    var comments = memo.comments;
+    for(var i in comments){
+        if(comments[i]._id == memo._id) {
+            comments.splice(i, 1);
+        }
+    }
+    memo.save(function(err) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        }
+    });
 };
 
 module.exports.updateComment = function(req ,res){
@@ -143,5 +156,5 @@ module.exports.updateComment = function(req ,res){
 };
 
 module.exports.getComment = function(req ,res){
-
+    res.json(req.memo.comments);
 };

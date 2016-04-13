@@ -35,7 +35,8 @@ angular.module('board').controller('boardModalController', ['$scope', '$location
             });
 
             user.$save({boardId : $routeParams.boardId}, function(response){
-                $scope.message = "추가되었습니다."
+                $scope.message = "추가되었습니다.";
+                $scope.username = "";
             }, function(errorResponse){
                 $scope.message = errorResponse.data.message;
             });

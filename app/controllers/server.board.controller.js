@@ -53,6 +53,7 @@ module.exports.create = function(req, res){
 module.exports.delete = function(req, res){
     var boards = req.user.boards;
     var board = req.board;
+
     board.remove(function(err){
         if(err){
             return res.status(400).send({

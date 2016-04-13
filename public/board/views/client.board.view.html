@@ -1,4 +1,4 @@
-<section data-ng-controller="boardController" data-ng-init="findMemos() || findOne()">
+<section data-ng-controller="boardController" data-ng-init="findMemos()">
     <span data-ng-bind="authentication.user.username"></span>
     <a href ng-click="viewRename()" data-ng-bind="board.name"></a>
     <a class="btn btn-default" href="/signout">Log out</a>
@@ -7,8 +7,8 @@
     <a class="btn btn-default" href ng-click="viewAddMember()">add members..</a>
     <a class="btn btn-default" href="/webmemo#!/main/">Board list</a>
     <h1>Memos</h1>
-    <ul>
-        <li data-ng-repeat="memo in memos">
+    <ul scroll-glue>
+        <div data-ng-repeat="memo in memos">
             <a data-ng-bind="memo.title" href="/webmemo#!/main/{{boardId}}/memo/{{memo._id}}/view"></a>
             <br>
             <p data-ng-bind="memo.contents"></p>
@@ -17,6 +17,6 @@
                 <a class="btn btn-default" href="/webmemo#!/main/{{boardId}}/memo/{{memo._id}}/edit">edit</a>
                 <a class="btn btn-default" href data-ng-click="deleteMemo(memo);">지우기</a>
             </div>
-        </li>
+        </div>
     </ul>
 </section>
