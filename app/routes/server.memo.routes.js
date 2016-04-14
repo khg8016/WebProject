@@ -15,7 +15,7 @@ module.exports = function(app){
         put(users.requiresLogin, memos.hasAuthorization, memos.update).
         delete(users.requiresLogin, memos.hasAuthorization, memos.delete);
 
-    app.route('/comment/main/:boardId/memo/:memoId').
+    app.route('/comment/:memoId/:commentId').
         get(memos.getComment).
         post(users.requiresLogin, memos.addComment).
         put(users.requiresLogin, memos.updateComment).
@@ -23,6 +23,7 @@ module.exports = function(app){
 
     app.param('boardId', board.boardById);
     app.param('memoId', memos.memoById);
+    app.param('commentId', memos.commentById);
 
 };
 

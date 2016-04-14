@@ -96,6 +96,18 @@ module.exports.memoById = function(req, res, next, id){
         next();
     });
 };
+
+module.exports.commentById = function(req, res, next, id){
+    Memo.findById(id).populate('creator comments.creator').exec(function(err, memo){
+        if(err) return next(err);
+        if(!memo) return next(new Error('Failed to load' | id));
+
+        req.memo = memo;
+        next();
+    });
+};
+
+
 module.exports.memoList = function(req, res){
     var board = req.board;
     res.json(board.memos);

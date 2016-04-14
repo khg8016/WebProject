@@ -4,8 +4,8 @@
 
 angular.module('memo').factory('Comments',['$resource',
     function($resource){
-        return $resource('comment/main/:boardId/memo/:memoId', {
-            boardId : '@_id',
+        return $resource('comment/:memoId/:commentId', {
+            commentId : '@_id',
             memoId : '@_id'
         }, {
             update: {

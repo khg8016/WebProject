@@ -25,6 +25,10 @@ var memoSchema = new Schema({
         default: Date.now
     },
     comments : [{
+        _id: {
+            type : ObjectIdSchema,
+            default : function () { return new ObjectId()}
+        },
         content : {
             type : String,
             trim : true
