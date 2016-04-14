@@ -7,8 +7,6 @@ angular.module('board').controller('boardController', ['$scope', '$routeParams',
     function($scope, $routeParams, $route, $location, ModalService, Authentication, Memos, Board){
         $scope.boardId = $routeParams.boardId;
         $scope.authentication = Authentication;
-
-
         $scope.findBoards = function(){ //보드들을 찾음
             $scope.boards = Board.query();
         };

@@ -18,11 +18,36 @@
                 <h4 class="modal-title" data-ng-bind="memo.title"></h4>
             </div>
             <div class="modal-body">
-                <br>
-                <h data-ng-bind="memo.contents"></h>
-                <br>
-                <small data-ng-bind="memo.created | date:'medium'"></small>
-                <small data-ng-bind="memo.creator.username"></small>
+                <div data-ng-show="memoToggle">
+                    <h data-ng-bind="memo.contents"></h>
+                    <br>
+                    <small data-ng-bind="memo.created | date:'medium'"></small>
+                    <small data-ng-bind="memo.creator.username"></small>
+                    <a class="btn btn-default" href data-ng-click="toggleEdit()">edit</a>
+                </div>
+                <div data-ng-show="!memoToggle">
+                    <form data-ng-submit="update()" novalidate>
+                        <div>
+                            <label for ="title">Title</label>
+                            <div>
+                                <input type="text" data-ng-model ="memo.title" id="title" placeholder="Title" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="contents">Content</label>
+                            <div>
+                                <textarea data-ng-model="memo.contents" id="contents" cols="30" rows="10" placeholder="Contents"></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit">완료</button>
+                        </div>
+                        <div data-ng-show="error">
+                            <strong data-ng-bind="error"></strong>
+                        </div>
+                    </form>
+                </div>
+
                 <br>
                 <form data-ng-submit="makeComment()">
                     <div>
@@ -37,13 +62,25 @@
                 </form>
                 <br>
                 <div data-ng-repeat="comment in comments">
-                    <span data-ng-bind="comment.creator.username"></span>
-                    <span data-ng-bind="comment.content"></span>
+                    <div data-ng-show="!commentToggle[$index]">
+                        <span data-ng-bind="comment.creator.username"></span>
+                        <span data-ng-bind="comment.content"></span>
+                        <br>
+                        <small data-ng-bind="comment.created  | date:'medium'"></small>
+                        <div data-ng-show="authentication.user._id == comment.creator._id">
+                            <a class="btn btn-default" href data-ng-click="commentToggleEdit(comment)">수정</a>
+                            <a class="btn btn-default" href data-ng-click="deleteComment(comment);">X</a>
+                        </div>
+                    </div>
+                    <div data-ng-show="commentToggle[$index]">
+                        <form data-ng-submit="editComment(comment)">
+                                <div>
+                                    <textarea data-ng-model="comment.content" id="content" cols="30" rows="1" placeholder="Write a comment.."></textarea>
+                                </div>
+                                <button type="submit">수정</button>
+                        </form>
+                    </div>
                     <br>
-                    <small data-ng-bind="comment.created  | date:'medium'"></small>
-                    <span data-ng-show="authentication.user._id == comment.creator._id">
-                        <a class="btn btn-default" href data-ng-click="deleteComment(comment);">X</a>
-                    </span>
                 </div>
             </div>
 

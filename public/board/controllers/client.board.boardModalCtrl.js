@@ -5,6 +5,8 @@ angular.module('board').controller('boardModalController', ['$scope', '$location
     function($scope, $location, $routeParams,$route, close, Board) {
 
 
+        $scope.board = Board.get({boardId : $routeParams.boardId});
+
         $scope.close1 = function(result) {
             close(result, 100);
             $location.path('/main');
@@ -22,7 +24,6 @@ angular.module('board').controller('boardModalController', ['$scope', '$location
 
             board.$save(function(response){
                 close(100);
-                $location.path('/main/');
             }, function(errorResponse){
                 $scope.error = errorResponse.data.message;
             });

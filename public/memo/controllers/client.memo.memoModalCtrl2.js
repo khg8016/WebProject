@@ -19,7 +19,6 @@ angular.module('memo').controller('memoModalController2', ['$scope', '$location'
             });
 
             memo.$save({boardId: $routeParams.boardId}, function(response){
-                console.log("savesave");
                 $route.reload();
                 close(100);
             }, function(errorResponse){

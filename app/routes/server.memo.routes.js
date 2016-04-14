@@ -15,14 +15,17 @@ module.exports = function(app){
         put(users.requiresLogin, memos.hasAuthorization, memos.update).
         delete(users.requiresLogin, memos.hasAuthorization, memos.delete);
 
-    app.route('/comment/main/:boardId/memo/:memoId').
-        get(memos.getComment).
-        post(users.requiresLogin, memos.addComment).
+    app.route('/comment/:boardId/:memoId').
+        get(memos.getComments).
+        post(users.requiresLogin, memos.addComment);
+
+    app.route('/comment/:boardId/:memoId/:commentId').
         put(users.requiresLogin, memos.updateComment).
         delete(users.requiresLogin, memos.deleteComment);
 
     app.param('boardId', board.boardById);
     app.param('memoId', memos.memoById);
+    app.param('commentId', memos.commentById);
 
 };
 

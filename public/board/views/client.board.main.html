@@ -6,11 +6,13 @@
     </div>
     <h1>Boards</h1>
     <ul scroll-glue>
-        <li data-ng-repeat="board in boards">
+        <div data-ng-repeat="board in boards">
             <a class="btn btn-default" data-ng-href="#!/main/{{board._id}}/memo" data-ng-bind="board.name"></a> <!-- 보드 들어가기 -->
             <span data-ng-show="authentication.user._id == board.creator">
                 <a class="btn btn-default" data-ng-click="delete(board);">X</a>
             </span>
+            <br>
+        </div>
     </ul>
 
 </section>
