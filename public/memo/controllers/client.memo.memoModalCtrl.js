@@ -4,7 +4,9 @@
 
 angular.module('memo').controller('memoModalController', ['$scope', '$location', '$routeParams', '$route','close', 'Authentication', 'Memos', 'Comments',
     function($scope, $location, $routeParams, $route, close, Authentication, Memos, Comments) {
+
         $scope.authentication = Authentication;
+<<<<<<< HEAD
         $scope.memoToggle = true;
         $scope.memo = Memos.get({boardId: $routeParams.boardId, memoId : $routeParams.memoId});
 
@@ -20,10 +22,37 @@ angular.module('memo').controller('memoModalController', ['$scope', '$location',
             for(var i in $scope.comments){
                 if($scope.comments[i] === comment){
                     $scope.commentToggle[i] = true;
+=======
+        $scope.memo = Memos.get({boardId: $routeParams.boardId,
+                                  memoId : $routeParams.memoId});
+
+        $scope.close = function(result) {
+            close(result, 100);
+            $location.path('/main/' + $routeParams.boardId + '/memo');
+        };
+
+        $scope.delete = function(){
+                $scope.memo.$remove({boardId: $routeParams.boardId}, //보드아디 지워보기
+                    function (){
+                        close(100);
+                        $location.path('/main/' + $routeParams.boardId + '/memo');
+                    }
+                );
+        };
+
+        $scope.update = function(){
+            $scope.memo.$update({boardId: $routeParams.boardId}, //보드아디 지워보기
+                function(response){
+                    close(100);
+                    $location.path('/main/' + $routeParams.boardId + '/memo');
+                }, function(errorResponse){
+                    $scope.error = errorResponse.data.message;
+>>>>>>> 0da6a2d9ac50209742da582ff26c76c6afe5160b
                 }
             }
         };
 
+<<<<<<< HEAD
             $scope.close = function(result) {
                 close(result, 100);
                 $location.path('/main/' + $routeParams.boardId + '/memo');
@@ -50,11 +79,16 @@ angular.module('memo').controller('memoModalController', ['$scope', '$location',
             };
 
             $scope.makeComment = function(){
+=======
+        $scope.makeComment = function(){
+            console.log("mcmc");
+>>>>>>> 0da6a2d9ac50209742da582ff26c76c6afe5160b
             var comment = new Comments({
                content : this.comment
             });
 
             comment.$save({boardId: $routeParams.boardId, memoId: $routeParams.memoId},
+<<<<<<< HEAD
                 function(comment){
                     $scope.comment = "";
                     $scope.comments.push(comment);
@@ -62,10 +96,18 @@ angular.module('memo').controller('memoModalController', ['$scope', '$location',
                     $scope.commentToggle[$scope.comments.length] = false;
                 }, function(){
                     console.log("Error");
+=======
+                function(response){
+                    console.log("savesave");
+                }, function(errorResponse){
+                    console.log("fafafa");
+                    $scope.error = errorResponse.data.message;
+>>>>>>> 0da6a2d9ac50209742da582ff26c76c6afe5160b
                 });
         };
 
         $scope.deleteComment = function(comment){
+<<<<<<< HEAD
             if(comment) {
                 console.log($scope.comments[0] == comment);
                 comment.$remove({boardId: $routeParams.boardId, memoId: $routeParams.memoId, commentId : comment._id},
@@ -79,8 +121,16 @@ angular.module('memo').controller('memoModalController', ['$scope', '$location',
                         }
                     }, function () {
                         console.log("Error");
+=======
+            if(comment){
+                board.$remove( function(){
+                    for(var i in $scope.comments){
+                        if($scope.comments[i] === comment){
+                            $scope.comments.splice(i, 1);
+                        }
+>>>>>>> 0da6a2d9ac50209742da582ff26c76c6afe5160b
                     }
-                );
+                });
             }
         };
 

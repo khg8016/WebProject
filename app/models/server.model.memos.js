@@ -25,9 +25,15 @@ var memoSchema = new Schema({
         default: Date.now
     },
     comments : [{
+<<<<<<< HEAD
         _id : {
             type : Schema.ObjectId,
             default: function () { return new mongoose.Types.ObjectId()}
+=======
+        _id: {
+            type : ObjectIdSchema,
+            default : function () { return new ObjectId()}
+>>>>>>> 0da6a2d9ac50209742da582ff26c76c6afe5160b
         },
         content : {
             type : String,

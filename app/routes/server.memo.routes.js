@@ -15,11 +15,17 @@ module.exports = function(app){
         put(users.requiresLogin, memos.hasAuthorization, memos.update).
         delete(users.requiresLogin, memos.hasAuthorization, memos.delete);
 
+<<<<<<< HEAD
     app.route('/comment/:boardId/:memoId').
         get(memos.getComments).
         post(users.requiresLogin, memos.addComment);
 
     app.route('/comment/:boardId/:memoId/:commentId').
+=======
+    app.route('/comment/:memoId/:commentId').
+        get(memos.getComment).
+        post(users.requiresLogin, memos.addComment).
+>>>>>>> 0da6a2d9ac50209742da582ff26c76c6afe5160b
         put(users.requiresLogin, memos.updateComment).
         delete(users.requiresLogin, memos.deleteComment);
 

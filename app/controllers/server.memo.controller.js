@@ -98,6 +98,7 @@ module.exports.memoById = function(req, res, next, id){
 };
 
 module.exports.commentById = function(req, res, next, id){
+<<<<<<< HEAD
     var comments = req.memo.comments;
     for(var i in comments){
         if(comments[i].id === id) {
@@ -107,6 +108,18 @@ module.exports.commentById = function(req, res, next, id){
     next();
 };
 
+=======
+    Memo.findById(id).populate('creator comments.creator').exec(function(err, memo){
+        if(err) return next(err);
+        if(!memo) return next(new Error('Failed to load' | id));
+
+        req.memo = memo;
+        next();
+    });
+};
+
+
+>>>>>>> 0da6a2d9ac50209742da582ff26c76c6afe5160b
 module.exports.memoList = function(req, res){
     var board = req.board;
     res.json(board.memos);
