@@ -56,7 +56,6 @@ angular.module('memo').controller('memoModalController', ['$scope', '$location',
 
             comment.$save({boardId: $routeParams.boardId, memoId: $routeParams.memoId},
                 function(comment){
-                    console.log("fdsafs" + comment._id);
                     $scope.comment = "";
                     $scope.comments.push(comment);
 
